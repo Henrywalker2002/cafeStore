@@ -16,44 +16,17 @@ create table image(
     image blob
 );
 
-create table admin(
-	username varchar(100) primary key,
-    `password` varchar(100),
-    email varchar(100),
-    `name` varchar(100), 
-    avt int references image(id)
-);
-
-create table drink(
-	id int primary key auto_increment,
-    `name` varchar(100),
-    price int,
-    `description` varchar(500),
-    imageId int references image(id)
-);
-
-create table staff (
-	username varchar(100) primary key,
-    `password` varchar(100),
-    email varchar(100),
-    `name` varchar(100), 
-    avt int references image(id),
-    birthday date, 
-    address varchar(100),
-    phone varchar(15)
-);
-
 create table orderOff (
     id int auto_increment primary key,
     `time` datetime,
     phone varchar(15),
-    staffUsername varchar(100) references staff(username),
+    staffUsername varchar(100) references account(username),
     voucher varchar(100) references voucher(code)
 );
 
 create table `order` (
     id int auto_increment primary key,
-    username varchar(100) references user(username),
+    username varchar(100) references account(username),
     `statement` int,
     totalFee int,
     `time` datetime,
@@ -62,12 +35,12 @@ create table `order` (
     timeComplete datetime,
     feedback varchar(255),
     `star` int,
-    staffUsername varchar(100) references staff(username),
+    staffUsername varchar(100) references account(username),
     voucher varchar(100) references voucher(code) 
 );
 
 create table drinkIds (
-    orderId int references order(id),
+    orderId int references `order`(id),
     drinkId int references drink(id),
     CONSTRAINT drinkIdsPK primary key (orderId, drinkId)
 );
@@ -78,7 +51,7 @@ create table voucher (
     phoneNumberUsed varchar(15)
 );
 
-create table `user` (
+create table account (
     username varchar(100) primary key,
     `password` varchar (100) not null,
     email varchar(100),
@@ -86,7 +59,8 @@ create table `user` (
     avt blob,
     birthday date,
     phone varchar(15),
-    `point` float default 0
+    `point` float default 0,
+    `type` int
 );
 
 create table address (
@@ -94,3 +68,11 @@ create table address (
     `address` varchar(100),
     CONSTRAINT addressPK primary key (username, `address`)
 );
+
+CREATE TABLE drink (
+	id int AUTO_INCREMENT PRIMARY KEY, 
+    name varchar(100) UNIQUE,
+    price int, 
+    description varchar(500), 
+    imageId int REFERENCES image(id)
+)

@@ -17,7 +17,8 @@
             "port": 9003,
             "serverReadyAction": {
                 "action": "openExternally"
-            }
+            },
+            "cwd": "${workspaceRoot}/backend"
         },
         {
             "name": "Debug current script in console",
