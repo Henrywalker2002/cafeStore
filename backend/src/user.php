@@ -1,8 +1,8 @@
 <?php
 
-include_once("./db.php");
+include_once("db.php");
 class Account {
-    public $conn;
+    private $conn;
     public function __construct() {
         $this->conn = (new DBConnection())->getConn();
     }
@@ -15,7 +15,7 @@ class Account {
             $res = ['result' => "success"];
         }
         catch(Exception $e) {
-            $res = ["result" => "fail", "message" => $this->conn->error];
+            $res = ["result" => "fail", "message" => $e->getMessage()];
         }
         return $res;
     }
@@ -38,7 +38,7 @@ class Account {
             $res = ["result" => "success", "message" => $type];
         }
         catch (Exception $e) {
-            $res = ["result" => "fail", "message" => $this->conn->error];
+            $res = ["result" => "fail", "message" => $e->getMessage()];
         }
         return $res;
     }
@@ -51,7 +51,7 @@ class Account {
             $res = ["result" => "success", "message" => $temp];
         }
         catch (Exception $e) {
-            $res = ["result" => "fail", "message" => $this->conn->error];
+            $res = ["result" => "fail", "message" => $e->getMessage()];
         }
         return $res;
     }

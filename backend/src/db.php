@@ -7,10 +7,11 @@
             $username = "root";
             $password = "";
             $dbname = "cafestore";
-            $this->conn = new mysqli($servername, $username, $password, $dbname);
+            $this->conn = new mysqli($servername, $username, $password, $dbname, 3306);
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
             }
+            
         }
 
         public function getConn() {
