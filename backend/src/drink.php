@@ -44,8 +44,12 @@ class Drink {
             $stmt->bind_param("i", $id);
             $temp = $stmt->execute();
             $array = $stmt->get_result();
+            if ($array->num_rows == 0) {
+                return ["result" => "fail", "message" => "something went wrong"];
+            }
             $array = $array->fetch_assoc();
             $image = new Image();
+            
             $array['image'] = $image->getlink($array['image']);
             if ($temp) {
                 $res = ["result"=> "success", "message" => $array];

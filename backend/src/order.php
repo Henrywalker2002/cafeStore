@@ -41,16 +41,16 @@ class Order {
             $fee = 0; // total drink fee
             $query = "select price from drink where id = ";
             foreach($id as $value) {
-                $temp = $this->conn->query($query . (string) $value);
+                $temp = $this->conn->query($query . (string) $value['id']);
                 $price = $temp->fetch_array(MYSQLI_ASSOC);
-                $fee += $price['price'];
+                $fee += $price['price']*$value['number'];
             }
             // if user use point then subtract point
             $point = 0;
             if ($isUsePoint) {
                 $temp = $this->conn->query("select point from account where username = '" .$username. "'");
                 $temp = $temp->fetch_assoc();
-                $point = $temp['point'];
+                $point = (int) $temp['point'];
                 $temp = $this->conn->query('update account set point = 0 where username = "' .$username. '"');
             }
             $totalFee = $transportFee + $fee - $point;
@@ -72,9 +72,11 @@ class Order {
             $stmt->execute();
             $orderid = $this->conn->insert_id;
             // insert into drinkids 
-            $stmt = $this->conn->prepare("insert into drinkids (orderId, drinkId) values (?,?)");
-            $stmt->bind_param( 'ii', $orderid, $value);
+            $stmt = $this->conn->prepare("insert into drinkids (orderId, drinkId, number) values (?,?, ?)");
+            $stmt->bind_param( 'iii', $orderid, $drinkId, $number);
             foreach($id as $value) {
+                $drinkId = $value['id'];
+                $number = $value['number'];
                 $stmt->execute();
             }
             if ($voucherInvalid != 0 ) {
@@ -200,6 +202,18 @@ class Order {
             $array = $temp->fetch_assoc();
             // convert statement from int to string
             $array = helper($array);
+            $orderId = $array['id'];
+            $stmt = $this->conn->prepare("select * from drinkIds where orderId = ?");
+            $stmt->bind_param('i', $orderId);
+            $stmt->execute();
+            $temp = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $lst = [];
+            foreach($temp as $e) {
+                $name =  $this->conn->query("select name from drink where id = " .$e['drinkId']);
+                $name = $name->fetch_assoc()['name'];
+                array_push($lst, ['name' => $name,  'number' => $e['number']]);
+            }
+            $array += ['drink' => $lst];
             $res = ["result" => "success", "message" => $array];
         }
         catch (Exception $e) {
@@ -210,13 +224,27 @@ class Order {
 
     public function getOrderByUsername(string $username) {
         try {
+            $stmt = $this->conn->prepare("select * from drinkIds where orderId = ?");
+            $stmt->bind_param('i', $orderId);
             $query = "select * from `order` where username = '" . $username ."'";
             $temp =  $this->conn->query($query);
             $array = $temp->fetch_all(MYSQLI_ASSOC);
+
             // convert statement from int to string
             for ($i = 0; $i < count($array); $i++) {
                 $array[$i] = helper($array[$i]);
+                $orderId = $array[$i]['id'];
+                $stmt->execute();
+                $temp = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                $lst = [];
+                foreach($temp as $e) {
+                    $name =  $this->conn->query("select name from drink where id = " .$e['drinkId']);
+                    $name = $name->fetch_assoc()['name'];
+                    array_push($lst, ['name' => $name,  'number' => $e['number']]);
+                }
+                $array[$i] += ['drink' => $lst];
             }
+
             $res = ["result" => "success", "message" => $array];
         }
         catch (Exception $e) {
@@ -230,9 +258,21 @@ class Order {
             $query = "select * from `order` where staffUsername = '" . $username ."'";
             $temp =  $this->conn->query($query);
             $array = $temp->fetch_all(MYSQLI_ASSOC);
+            $stmt = $this->conn->prepare("select * from drinkIds where orderId = ?");
+            $stmt->bind_param('i', $orderId);
             // convert statement from int to string
             for ($i = 0; $i < count($array); $i++) {
                 $array[$i] = helper($array[$i]);
+                $orderId = $array[$i]['id'];
+                $stmt->execute();
+                $temp = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                $lst = [];
+                foreach($temp as $e) {
+                    $name =  $this->conn->query("select name from drink where id = " .$e['drinkId']);
+                    $name = $name->fetch_assoc()['name'];
+                    array_push($lst, ['name' => $name,  'number' => $e['number']]);
+                }
+                $array[$i] += ['drink' => $lst];
             }
             $res = ["result" => "success", "message" => $array];
         }
@@ -244,12 +284,24 @@ class Order {
 
     public function getAllOrder() {
         try {
+            $stmt = $this->conn->prepare("select * from drinkIds where orderId = ?");
+            $stmt->bind_param('i', $orderId);
             $query = "select * from `order` ORDER BY statement" ;
             $temp =  $this->conn->query($query);
             $array = $temp->fetch_all(MYSQLI_ASSOC);
             // convert statement from int to string
             for ($i = 0; $i < count($array); $i++) {
                 $array[$i] = helper($array[$i]);
+                $orderId = $array[$i]['id'];
+                $stmt->execute();
+                $temp = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                $lst = [];
+                foreach($temp as $e) {
+                    $name =  $this->conn->query("select name from drink where id = " .$e['drinkId']);
+                    $name = $name->fetch_assoc()['name'];
+                    array_push($lst, ['name' => $name,  'number' => $e['number']]);
+                }
+                $array[$i] += ['drink' => $lst];
             }
             $res = ["result" => "success", "message" => $array];
         }

@@ -5,6 +5,7 @@ include_once("./src/order.php");
 include_once("./src/image.php");
 include_once("./src/drink.php");
 include_once("./src/voucher.php");
+include_once("./src/cart.php");
 
 error_reporting(0);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -224,6 +225,29 @@ elseif ($uri[1] === "completeOrder") {
         echo json_encode($res);
     }
 }
+elseif ($uri[1] === "cart") {
+    $cart = new Cart();
+    if ($method === "POST") {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $res = $cart->addToCart($input['username'], $input['drinkId']);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+    elseif ($method === 'GET') {
+        try {
+            $username = $_GET['username'];
+            $res = $cart->getCart($username);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
 
 
 // voucher handle 
@@ -254,7 +278,5 @@ elseif ($uri[1] === 'voucher') {
         echo json_encode($res);
     }
 }
-
-
 
 ?>
