@@ -1,10 +1,11 @@
 import './App.css';
 import OrderList from './Staff/OrderList';
+import DrinkList from './Drink/addNew';
 
 function App() {
   return (
     <div className="App">
-      <OrderList/>
+      <DrinkList />
     </div>
   );
 }
