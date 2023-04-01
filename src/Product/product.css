@@ -1,0 +1,17 @@
+.product {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.title-product {
+  margin-top: 32px;
+}
+
+.product-menu {
+  width: 1148px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+
