@@ -1,0 +1,133 @@
+/* Search Bar */
+.searchBar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 500px;
+    margin: 10px 10px;
+}
+.search-list-box {
+    padding: 10px;
+    background: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 350px;
+}
+.search-btn {
+    border: none;
+    background: none;
+    position: absolute;
+    transform: translateY(-50%);
+    right: 150px;
+    margin-top: 20px;
+  }
+  
+.search-btn:hover {
+    color: #E37D20;
+    cursor: pointer;
+}
+.addItem-btn{
+    margin-left: 20px;
+    border: none;
+    /* position: absolute; */
+    width: 115px;
+    height: 40px;
+    border-radius: 8px;
+    background: #E37D20;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    color: #ffffff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Menu Table */
+.menu-table{
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+.menu-list-thead{
+    padding: 10px;
+    border-bottom: 2px solid #000000 !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 27px;
+    color: #794612;
+}
+.menu-list-th{
+    /* width: 190px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 100px;
+}
+.menu-list-tbody{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    color: #000000;
+}
+.menu-list-tr {
+    width: 300px;
+    height: 40px;
+    border-top: 0.025rem solid #D8D8D8;
+    border-radius: 10px;
+}
+/* .menu-list-td {
+    padding-right: 50px;
+} */
+img.icon{
+    color: #794612;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.image {
+    width: 50px;
+    height: 50px;
+}
+
+/* Add Product Form */
+.add-form{
+    margin: 20px 0px;
+}
+
+.addBtn{
+    margin-left: 20px;
+    border: none;
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    background: #E37D20;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    color: #ffffff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload, input#name, input#price {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: rgba(255, 211, 145, 0.50);
+    border-radius: 5px;
+    border: none;
+    color: #794612;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 20px;
+}
+input ::placeholder {
+    color: #794612;
+}

@@ -2,8 +2,10 @@ import React from 'react'
 import { orderList } from '../../../Staff/orderlistData'
 import TableRow from './TableRow'
 import './Table.css'
+import { createElement } from 'react'
 
 function Table() {
+
   return (
     <table className='order-list'>
         <thead className='order-list-thead'>
