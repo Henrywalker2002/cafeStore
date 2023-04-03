@@ -2,9 +2,7 @@
 
 include_once("db.php");
 class Image {
-    private $conn;
     public function __construct() {
-        $this->conn = (new DBConnection())->getConn();
     }
     
     public function decodeBase64(string $base) {
@@ -23,7 +21,10 @@ class Image {
         return $id. '.'. $typ;
     }
     // input is file name like default.png and out is like http://localhost:8000/img/default.png
-    public function getlink(string $filename) {
+    public function getlink($filename) {
+        if ($filename == null or $filename == '') {
+            $filename = "default.png";
+        }
         $ip_server = $_SERVER['SERVER_NAME'];
         $port_server = $_SERVER['SERVER_PORT'];
         $imagelink = 'http://'. $ip_server . ':' . $port_server . '/img/' .$filename;
