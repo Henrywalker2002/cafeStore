@@ -41,6 +41,40 @@ if ($uri[1] === 'user') {
     } 
 }
 
+elseif ($uri[1] === "account") {
+    $acc = new Account();
+    if ($method === 'PUT') {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $res = $acc->update_account($input['username'], $input['name'], $input['email'], $input['birthday']);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+    elseif ($method == 'DELETE') {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $username = $input['username'];
+            $res = $acc->ban_account($username);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+    elseif ($method === 'GET') {
+        try {
+            $res  = $acc->getDetail($_GET['username']);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
+
 elseif ($uri[1] === 'staff') {
     $staff = new Account();
     if ($method == "POST") {
@@ -54,9 +88,37 @@ elseif ($uri[1] === 'staff') {
         }
         echo json_encode($res);
     }
-    if ($method == "GET") {
+    elseif ($method == "GET") {
         try {
             $res = $staff->getListStaff();
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
+
+elseif ($uri[1] === 'updateAvt') {
+    $staff = new Account();
+    if ($method === 'PUT') {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $res = $staff->upload_avt($input['username'], $input['image']);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
+
+elseif ($uri[1] === "changePassword") {
+    $acc = new Account();
+    if ($method === 'POST') {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $res = $acc->changepass($input['username'], $input['oldPassword'], $input['newPassword']);
         }
         catch (Exception $e) {
             $res = ["result" => "fail", "message" => $e->getMessage()];
