@@ -21,7 +21,7 @@ $uri = explode( '/', $uri );
 $method = $_SERVER['REQUEST_METHOD']; 
 
 // user
-if ($uri[1] === 'user') {
+if ($uri[2] === 'user') {
     if ($method == "POST") { // add user 
         $user = new Account();
         $input = (array) json_decode(file_get_contents('php://input'), true);
@@ -41,7 +41,7 @@ if ($uri[1] === 'user') {
     } 
 }
 
-elseif ($uri[1] === "account") {
+elseif ($uri[2] === "account") {
     $acc = new Account();
     if ($method === 'PUT') {
         try {
@@ -75,7 +75,7 @@ elseif ($uri[1] === "account") {
     }
 }
 
-elseif ($uri[1] === 'staff') {
+elseif ($uri[2] === 'staff') {
     $staff = new Account();
     if ($method == "POST") {
         try {
@@ -99,7 +99,7 @@ elseif ($uri[1] === 'staff') {
     }
 }
 
-elseif ($uri[1] === 'updateAvt') {
+elseif ($uri[2] === 'updateAvt') {
     $staff = new Account();
     if ($method === 'PUT') {
         try {
@@ -113,7 +113,7 @@ elseif ($uri[1] === 'updateAvt') {
     }
 }
 
-elseif ($uri[1] === "changePassword") {
+elseif ($uri[2] === "changePassword") {
     $acc = new Account();
     if ($method === 'POST') {
         try {
@@ -127,7 +127,7 @@ elseif ($uri[1] === "changePassword") {
     }
 }
 
-elseif ($uri[1] === 'login') {
+elseif ($uri[2] === 'login') {
     if ($method === "POST") { // check login
         try {
             $user = new Account();
@@ -143,7 +143,7 @@ elseif ($uri[1] === 'login') {
 
 
 // handle drink 
-elseif ($uri[1] === "drink") {
+elseif ($uri[2] === "drink") {
     $drink = new Drink();
     if ($method === 'POST') {
         try {
@@ -199,7 +199,7 @@ elseif ($uri[1] === "drink") {
 }
 
 // handle order
-elseif ($uri[1] === 'order') {
+elseif ($uri[2] === 'order') {
 
     $order = new Order();
     if ($method === "POST") { // request order from client
@@ -261,7 +261,7 @@ elseif ($uri[1] === 'order') {
     }
 }
 
-elseif ($uri[1] === "acceptOrder") {
+elseif ($uri[2] === "acceptOrder") {
     $order = new Order();
     if ($method === "PUT") {
         try {
@@ -274,7 +274,7 @@ elseif ($uri[1] === "acceptOrder") {
         echo json_encode($res);
     }
 }
-elseif ($uri[1] === "completeOrder") {
+elseif ($uri[2] === "completeOrder") {
     $order = new Order();
     if ($method === "PUT") {
         try {
@@ -287,7 +287,7 @@ elseif ($uri[1] === "completeOrder") {
         echo json_encode($res);
     }
 }
-elseif ($uri[1] === "cart") {
+elseif ($uri[2] === "cart") {
     $cart = new Cart();
     if ($method === "POST") {
         try {
@@ -313,7 +313,7 @@ elseif ($uri[1] === "cart") {
 
 
 // voucher handle 
-elseif ($uri[1] === 'voucher') {
+elseif ($uri[2] === 'voucher') {
     $voucher = new Voucher();
     if ($method == "POST") {
         try {
