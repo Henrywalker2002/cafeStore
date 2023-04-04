@@ -1,10 +1,10 @@
 .head {
-  width: 1206px;
   height: 40px;
   margin-top: 36px;
   margin-left: 135px;
   margin-right: 99px;
   border: 0px;
+  text-align: center;
 }
 
 .img-left {
@@ -15,7 +15,6 @@
 
 .head-middle {
   float: left;
-  width: 670px;
   height: 40px;
   margin-left: 90px;
   padding-top: 6px;

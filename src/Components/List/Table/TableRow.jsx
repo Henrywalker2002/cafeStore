@@ -6,7 +6,7 @@ import './Table.css'
 import './TableRow.css'
 import {RiDeleteBin6Line} from 'react-icons/ri'
 
-function TableRow({orderInfo}) {
+function TableRow(orderInfo) {
     const {isOpen, toggle} = useOpenController(false);
   return (
     <tbody className='order-list-body'>
@@ -17,9 +17,7 @@ function TableRow({orderInfo}) {
             <td className='order-list-td'>{orderInfo.total}</td>
             <td className='order-list-td'><button className='action-btn'>{orderInfo.action}</button></td>
             <td className='order-list-td'><RiDeleteBin6Line className='delete-btn'/></td>
-            <td className='button-td'>
-                <ExpandableButton isOpen={isOpen} toggle={toggle}/>
-            </td>
+            <td className='button-td'><ExpandableButton isOpen={isOpen} toggle={toggle}/></td>
         </tr>
         {isOpen && <SubRow order_number={orderInfo.order_number} />}
     </tbody>

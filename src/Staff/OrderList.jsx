@@ -8,7 +8,7 @@ function OrderList() {
   return (
     <div>
         <Header/>
-        <Title/>
+        <Title title="Order List"/>
         <StateNav/>
         <Table/>
     </div>
