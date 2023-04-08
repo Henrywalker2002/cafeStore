@@ -27,7 +27,7 @@ if ($uri[2] === 'user') {
         $input = (array) json_decode(file_get_contents('php://input'), true);
         try {
             $res = $user->addAccount($input['username'], $input["password"], $input["email"], $input["name"], 
-                                    $input["birthday"], $input["phone"], 1);
+                                    $input["birthday"], $input["phone"], 1, $input['address']);
             $response['status_code_header'] = 'HTTP/1.1 200 OK';
             $response['body'] = json_encode($res);
             echo $response['body'];
@@ -81,7 +81,7 @@ elseif ($uri[2] === 'staff') {
         try {
             $input = (array) json_decode(file_get_contents('php://input'), true);
             $res = $staff->addAccount($input['username'], $input["password"], $input["email"], $input["name"], 
-                                    $input["birthday"], $input["phone"], 2);
+                                    $input["birthday"], $input["phone"], 2, $input['address']);
         }
         catch (Exception $e) {
             $res = ["result" => "fail", "message" => $e->getMessage()];
