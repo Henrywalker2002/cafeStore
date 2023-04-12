@@ -7,9 +7,10 @@ class Account {
         $this->conn = (new DBConnection())->getConn();
     }
 
-    public function addAccount(string $username,string $password, string $email, string $name, string $birthday, string $phone, int $type) {
-        $stmt = $this->conn->prepare("insert into account (username, password, email, name, birthday, phone, type) values (?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssssi", $username, $password, $email, $name, $birthday, $phone, $type);
+    public function addAccount(string $username,string $password, string $email, string $name, string $birthday, string $phone, int $type, string $address) {
+        $stmt = $this->conn->prepare("insert into account (username, password, email, name, birthday, phone, type, address, startDate) values (?,?,?,?,?,?,?,?,?)");
+        $today = date('Y-m-d');
+        $stmt->bind_param("ssssssiss", $username, $password, $email, $name, $birthday, $phone, $type, $address, $today);
         try {
             $stmt->execute();
             $res = ['result' => "success"];
