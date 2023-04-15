@@ -6,6 +6,7 @@ include_once("./src/image.php");
 include_once("./src/drink.php");
 include_once("./src/voucher.php");
 include_once("./src/cart.php");
+include_once("./src/infor.php");
 
 error_reporting(0);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -333,6 +334,28 @@ elseif ($uri[2] === 'voucher') {
             else {
                 $res = $voucher->getAllVoucher();
             }
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
+elseif ($uri[2] == 'infor'){
+    $infor = new Infor();
+    if ($method == 'GET') {
+        try {
+            $res = $infor->getInfor();
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+    elseif ($method == 'PUT') {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $res = $infor->editInfor($input['phone'], $input['email'], $input['timeOpen'], $input['timeClose'], $input['banner'], $input['address']);
         }
         catch (Exception $e) {
             $res = ["result" => "fail", "message" => $e->getMessage()];
