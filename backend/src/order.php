@@ -35,7 +35,7 @@ class Order {
             $statement = 1;
             // default value for time start and transport fee
             $timeStart = new DateTime("now", new DateTimeZone("Asia/Ho_Chi_Minh"));
-            $timeStart = $timeStart->format(DateTime::ATOM);
+            $timeStart = $timeStart->format("Y-m-d");
             $transportFee = 10000;
             // handle drink list
             $fee = 0; // total drink fee
@@ -118,7 +118,7 @@ class Order {
     public function completeOrder(int $id) {
         try {
             $timeEnd = new DateTime("now", new DateTimeZone("Asia/Ho_Chi_Minh"));
-            $timeEnd = $timeEnd->format(DateTime::ATOM);
+            $timeEnd = $timeEnd->format("Y-m-d");
             // check status of order
             $query = "select username, fee, statement from `order` where id = " . (string) $id;
             $temp = $this->conn->query($query);
