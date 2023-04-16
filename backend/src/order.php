@@ -72,7 +72,7 @@ class Order {
             $stmt->execute();
             $orderid = $this->conn->insert_id;
             // insert into drinkids 
-            $stmt = $this->conn->prepare("insert into drinkids (orderId, drinkId, number) values (?,?, ?)");
+            $stmt = $this->conn->prepare("insert into drinkIds (orderId, drinkId, number) values (?,?, ?)");
             $stmt->bind_param( 'iii', $orderid, $drinkId, $number);
             foreach($id as $value) {
                 $drinkId = $value['id'];
