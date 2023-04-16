@@ -44,14 +44,55 @@
     line-height: 20px;
 }
 
-/* Menu Table */
-.menu-table{
+/* Account type nav */
+.type-nav .container{
+    /* border-bottom: 3px solid #D8D8D8; */
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.type-list .type{
+    color: #707070;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+
+    padding-left: 0;
+    padding-right: 20px;
+    margin-left: 0;
+    margin-right: 20px;
+    padding-bottom: 20px;
+
+    transition: all 0.2s;
+}
+
+.type-list .type:hover{
+    border-bottom: 2px solid #E37D20;
+    color: #E37D20;
+    opacity: 1;
+}
+a.type.nav-link.active{
+    border-bottom: 3px solid #E37D20;
+    color: #E37D20;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+/* Account Table */
+.account-table{
     min-width: 100%;
     box-sizing: border-box;
     margin-top: 40px;
     margin-left: 10px;
 }
-.menu-list-thead{
+.account-list-thead{
     padding: 10px;
     border-bottom: 2px solid #000000 !important;
     font-style: normal;
@@ -60,75 +101,35 @@
     line-height: 27px;
     color: #794612;
 }
-.menu-list-th{
+.account-list-th{
     /* width: 190px; */
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 100px;
 }
-.menu-list-tbody{
+.account-list-tbody{
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 27px;
     color: #000000;
 }
-.menu-list-tr {
+.account-list-tr {
     width: 300px;
     height: 40px;
     border-top: 0.025rem solid #D8D8D8;
     border-radius: 10px;
 }
-/* .menu-list-td {
-    padding-right: 50px;
-} */
+.account-list-td {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
 img.icon{
     color: #794612;
     margin-right: 10px;
     margin-left: 10px;
-}
-.image {
-    width: 50px;
-    height: 50px;
-}
-
-/* Add Product Form */
-.add-form{
-    margin: 20px 0px;
-}
-
-.addBtn{
-    margin-left: 20px;
-    border: none;
-    width: 50px;
-    height: 30px;
-    border-radius: 8px;
-    background: #E37D20;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    color: #ffffff;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 20px;
-}
-input[type="file"] {
-    display: none;
-}
-.custom-file-upload, input#name, input#price {
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background: rgba(255, 211, 145, 0.50);
-    border-radius: 5px;
-    border: none;
-    color: #794612;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 20px;
-}
-input ::placeholder {
-    color: #794612;
 }

@@ -42,7 +42,7 @@ function MenuList() {
             redirect: 'follow'
         };
         
-        const res = await fetch("http://103.77.173.109/index.php/drink", requestOptions);
+        const res = await fetch("http://103.77.173.109:9000/index.php/drink", requestOptions);
         const response = await res.json()
         setTestList(response.message)
     }
@@ -94,7 +94,7 @@ function MenuList() {
             redirect: 'follow'
         };
 
-        const res = await fetch("http://103.77.173.109/index.php/drink", requestOptions);
+        const res = await fetch("http://103.77.173.109:9000/index.php/drink", requestOptions);
         const json = await res.json();
         if (json.result === "success") {
             setOpenConfirm(false)
@@ -117,7 +117,7 @@ function MenuList() {
         setMessage('');
     }
 
-    async function handdleSubmit() {
+    async function handleSubmit() {
         var inputFile = document.getElementById('file').files;
         var id = elementEdit.id;
 
@@ -145,7 +145,7 @@ function MenuList() {
                     redirect: 'follow'
                 };
         
-                const res = await fetch("http://103.77.173.109/index.php/drink", requestOptions)
+                const res = await fetch("http://103.77.173.109:9000/index.php/drink", requestOptions)
                 const json = await res.json();
                 if (json.result === 'success') {
                     handleClose()
@@ -173,7 +173,7 @@ function MenuList() {
                 redirect: 'follow'
             };
     
-            const res = await fetch("http://103.77.173.109/index.php/drink", requestOptions)
+            const res = await fetch("http://103.77.173.109:9000/index.php/drink", requestOptions)
             const json = await res.json();
             if (json.result === 'success') {
                 handleClose()
@@ -214,7 +214,7 @@ function MenuList() {
                     redirect: 'follow'
                 };
 
-                const res = await fetch("http://103.77.173.109/index.php/drink", requestOptions);
+                const res = await fetch("http://103.77.173.109:9000/index.php/drink", requestOptions);
                 const json = await res.json()
                 if (json.result === "success") {
                     getData();
@@ -249,7 +249,7 @@ function MenuList() {
                 redirect: 'follow'
             };
 
-            const res = await fetch("http://103.77.173.109/index.php/drink", requestOptions);
+            const res = await fetch("http://103.77.173.109:9000/index.php/drink", requestOptions);
             const json = await res.json()
             if (json.result === "success") {
                 getData();
@@ -330,16 +330,11 @@ function MenuList() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
-                    <Button onClick={handdleSubmit}>Save</Button>
+                    <Button onClick={handleSubmit}>Save</Button>
                 </DialogActions>
             </Dialog>
 
-            <Dialog
-                open={openConfirm}
-                onClose={handleClose}
-
-                aria-labelledby="draggable-dialog-title"
-            >
+            <Dialog open={openConfirm} onClose={handleClose} aria-labelledby="draggable-dialog-title">
                 <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
                 Subscribe
                 </DialogTitle>
