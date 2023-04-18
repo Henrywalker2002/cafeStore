@@ -6,7 +6,7 @@ function MyFeedback(props) {
         <form action="" id="myfeedback" className="my-feedback">
             <label className='h4'>MY FEEDBACK:</label>
             <img src={Star} alt="star rate"/>
-            <select name="rate" id="rate">
+            <select name="rate" id="rate" defaultValue={props.star}>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>

@@ -10,7 +10,7 @@
     padding: 15px;
 }
 
-.summary-table th:nth-child(even), td:nth-child(even) {
+.summary-table th:nth-child(even),.summary-table td:nth-child(even) {
     float: right;
 }
 
