@@ -8,7 +8,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import ExpandableButton from "./ExpandableButton";
 import useOpenController from "./useOpenController";
 import "./Table.css";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from "axios";
 
 function TableRow({ orderInfo, index, getData }) {
@@ -33,7 +32,6 @@ function TableRow({ orderInfo, index, getData }) {
         break;
       case "completed":
         setStatus("Success");
-        setAction("No Action");
         setDisabled(true);
     }
   };
@@ -99,31 +97,8 @@ function TableRow({ orderInfo, index, getData }) {
               {action}
             </button>
           )}
-
-          {disabled && (
-            <Button
-              variant="contained"
-              disabled
-              unstyled
-              sx={{
-                width: "110px",
-                height: "30px",
-                border: "none",
-                borderRadius: "5px",
-                fontStyle: "nomal",
-                fontWeight: "700",
-                fontSize: "12px",
-                lineHeight: "22px",
-              }}
-            >
-              {action}
-            </Button>
-          )}
         </td>
-        <td className="order-list-td">
-          {/* <RiDeleteBin6Line className="delete-btn" /> */}
-          {orderInfo.staffUsername}
-        </td>
+        <td className="order-list-td">{orderInfo.staffUsername}</td>
         <td className="button-td">
           <ExpandableButton isOpen={isOpen} toggle={toggle} />
         </td>
