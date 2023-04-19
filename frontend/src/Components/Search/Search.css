@@ -1,0 +1,29 @@
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 350px;
+    margin: 10px 10px;
+}
+.search-btn {
+    border: none;
+    background: none;
+    position: absolute;
+    transform: translateY(-50%);
+    right: 5px;
+    margin-top: 20px;
+  }
+  
+.search-btn:hover {
+    color: crimson;
+    cursor: pointer;
+}
+  
+.search-list-box {
+    padding: 10px;
+    background: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 350px;
+}
+

@@ -1,0 +1,23 @@
+.summary-table {
+    width: 100%;
+}
+
+.summary-table thead {
+    border-bottom: 1px solid black;
+}
+
+.summary-table th, td {
+    padding: 15px;
+}
+
+.summary-table th:nth-child(even),.summary-table td:nth-child(even) {
+    float: right;
+}
+
+.summary-table tr:nth-last-child(1), tr:nth-last-child(2), tr:nth-last-child(3) {
+    border-top: 1px solid black;
+}
+
+.summary-table tr:nth-last-child(1) {
+    font-weight: bold;
+}

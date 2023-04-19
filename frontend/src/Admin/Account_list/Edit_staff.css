@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+.staff-profile-title{
+    display: flex;
+    align-items: baseline;
+    width: fit-content;
+    height: 70px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#staffInfo-icon{
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    color: #90500E;
+}
+.staff-profile-content-title{
+    font-family: 'Just Another Hand', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 64px;
+    color: #65594C;
+}
+
+/* Edit Staff Info Form */
+.staffInfo-form{
+    height: fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+#first-row{
+    margin-top: 10px;
+}
+.input-row{
+    margin: 20px 20px;
+}
+#update-btn{
+    background: #a1570d;
+    border-radius: 8px;
+    align-items: center;
+    width: 330px;
+    height: 40px;
+    margin-left: 400px;
+    margin-right: auto;
+}
+#update-btn :hover {
+    background-color: #713f0d ;
+}

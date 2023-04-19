@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* Search Bar */
+.searchBar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 500px;
+    margin: 10px 10px;
+}
+.search-list-box {
+    padding: 10px;
+    background: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 350px;
+}
+.search-btn {
+    border: none;
+    background: none;
+    position: absolute;
+    transform: translateY(-50%);
+    right: 150px;
+    margin-top: 20px;
+  }
+  
+.search-btn:hover {
+    color: #E37D20;
+    cursor: pointer;
+}
+.addItem-btn{
+    margin-left: 20px;
+    border: none;
+    /* position: absolute; */
+    width: 115px;
+    height: 40px;
+    border-radius: 8px;
+    background: #E37D20;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    color: #ffffff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Account type nav */
+.type-nav .container{
+    /* border-bottom: 3px solid #D8D8D8; */
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.type-list .type{
+    color: #707070;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+
+    padding-left: 0;
+    padding-right: 20px;
+    margin-left: 0;
+    margin-right: 20px;
+    padding-bottom: 20px;
+
+    transition: all 0.2s;
+}
+
+.type-list .type:hover{
+    border-bottom: 2px solid #E37D20;
+    color: #E37D20;
+    opacity: 1;
+}
+a.type.nav-link.active{
+    border-bottom: 3px solid #E37D20;
+    color: #E37D20;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+/* Account Table */
+.account-table{
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+.account-list-thead{
+    padding: 10px;
+    border-bottom: 2px solid #000000 !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 27px;
+    color: #794612;
+}
+.account-list-th{
+    /* width: 190px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 100px;
+}
+.account-list-tbody{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    color: #000000;
+}
+.account-list-tr {
+    width: 300px;
+    height: 40px;
+    border-top: 0.025rem solid #D8D8D8;
+    border-radius: 10px;
+}
+.account-list-td {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+img.icon{
+    color: #794612;
+    margin-right: 10px;
+    margin-left: 10px;
+}
