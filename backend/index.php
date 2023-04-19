@@ -310,6 +310,16 @@ elseif ($uri[2] === "cart") {
         }
         echo json_encode($res);
     }
+    elseif ($method === "DELETE") {
+        try {
+            $input = (array) json_decode(file_get_contents('php://input'), true);
+            $res = $cart->delDrinkCart($input['username'], $input['drinkId']);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
 }
 
 
@@ -356,6 +366,20 @@ elseif ($uri[2] == 'infor'){
         try {
             $input = (array) json_decode(file_get_contents('php://input'), true);
             $res = $infor->editInfor($input['phone'], $input['email'], $input['timeOpen'], $input['timeClose'], $input['banner'], $input['address']);
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
+
+elseif ($uri[2] == 'feedback') {
+    $order = new Order();
+    if ($method == 'PUT') {
+        $input = (array) json_decode(file_get_contents('php://input'), true);
+        try {
+            $res = $order->addFeedBack($input['feedback'], $input['star'], $input['id']);
         }
         catch (Exception $e) {
             $res = ["result" => "fail", "message" => $e->getMessage()];

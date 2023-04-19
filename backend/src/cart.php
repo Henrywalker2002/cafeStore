@@ -45,7 +45,6 @@ class Cart {
                 return $array[0];
             }, $temp);
 
-
             $array = array_map(function ($id) {
                 $image = new Image();
                 $stmt = $this->conn->prepare("select * from drink where id = ?");
@@ -56,6 +55,19 @@ class Cart {
                 return $drink;
             }, $flatten);
             $res = ["result" => "success", "message" => $array];
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        return $res;
+    }
+
+    public function delDrinkCart(string $username, int $id) {
+        try {
+            $stmt = $this->conn->prepare("delete from `cart` where drinkId = ? and username = ?");
+            $stmt->bind_param('is', $id, $username);
+            $stmt->execute();
+            $res = ["result" => "ok", "message" => "success"];
         }
         catch (Exception $e) {
             $res = ["result" => "fail", "message" => $e->getMessage()];

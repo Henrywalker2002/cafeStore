@@ -311,4 +311,28 @@ class Order {
         return $res;
     }
 
+    public function addFeedBack(string $feedback, int $star, int $id) {
+        try {
+            $array = $this->getOrderById($id);
+            if ($array['result'] == 'success') {
+                if ($array['message']['statement'] != 'completed') {
+                    $res = ["result" => "fail", "message" => "order have not completed yet"];
+                }
+                else {
+                    $stmt = $this->conn->prepare("update `order` set feedback = ?, star = ? where id = ? ");
+                    $stmt->bind_param('sii', $feedback, $star, $id);
+                    $stmt->execute();
+                    $res = ["result" => "success"];
+                }
+            }
+            else {
+                return $array;
+            }
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        return $res;
+    }
+
 }
