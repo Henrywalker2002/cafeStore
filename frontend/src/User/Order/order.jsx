@@ -75,7 +75,7 @@ function Order(props) {
                     <h2>Order Summary</h2>
                     <SummaryTable drink={element.drink} subtotal={element.fee} shipping={element.transportFee} total={element.totalFee}/>
                 </div>
-                <MyFeedback feedback={element.feedback} star={element.star}/>
+                <MyFeedback feedback={element.feedback} star={element.star} id={element.id}/>
             </div>
         </div>
     );

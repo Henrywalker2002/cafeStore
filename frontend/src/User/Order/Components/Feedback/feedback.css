@@ -4,7 +4,7 @@
     margin-right: 50px;
 }
 
-.my-feedback input{
+.my-feedback input[type='submit']{
     height: 40px;
     border-radius: 6px;
     font-size: 16px;
@@ -23,4 +23,11 @@
 .my-feedback img {
     width: 24px;
     margin-bottom: 6px;
+}
+
+.my-feedback textarea{
+    height: 26px;
+    width: 200px;
+    border-radius: 6px;
+    font-size: 16px;
 }

@@ -14,7 +14,7 @@
     float: right;
 }
 
-.summary-table tr:nth-last-child(1), tr:nth-last-child(2), tr:nth-last-child(3) {
+.summary-table tr:nth-last-child(1), .summary-table tr:nth-last-child(2), .summary-table tr:nth-last-child(3) {
     border-top: 1px solid black;
 }
 

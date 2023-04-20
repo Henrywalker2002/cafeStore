@@ -81,7 +81,7 @@
   color: white;
 }
 
-#address {
+.shipping #address {
   width: 50%;
   height: 75px;
   border: 1px;
