@@ -1,0 +1,116 @@
+/* State Nav */
+span.MuiTabs-indicator.css-1aquho2-MuiTabs-indicator{
+  margin: 0;
+  background-color: #E37D20;
+}
+.state-tab.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected{
+  color: #E37D20;
+}
+
+/* order-list */
+.order-list {
+  min-width: 100%;
+  /* border: 1px solid #D8D8D8; */
+  /* border-collapse: collapse; */
+  /* background-color: #ffffff; */
+  box-sizing: border-box;
+  margin-top: 40px;
+  margin-left: 10px;
+}
+
+.order-list-thead {
+  /* background-color: #D8D8D8; */
+  padding: 10px;
+  border-bottom: 2px solid #000000 !important;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 27px;
+  color: #794612;
+}
+
+.order-list-th {
+  width: 280px;
+  margin-left: 10px;
+}
+
+.order-list-body{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  color: #000000;
+}
+
+
+.order-list-tr {
+  height: 40px;
+  border-top: 0.025rem solid #D8D8D8;
+  border-radius: 5px;
+}
+.order-list-tr:hover {
+  background: rgba(255, 144, 43, 0.19);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+/* order-detail */
+.order-detail{
+  position: relative;
+  margin-left: 10px;
+  width: 100%;
+  /* border-top: 1px solid #D8D8D8; */
+}
+
+.order-items-th{
+  width: 200px;
+}
+.order-quantity-th{
+  width: 100px;
+}
+.order-detail-body{
+  position: relative;
+}
+.order-detail-td{
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button */
+.button {
+  background-color: transparent;
+  color: #000000;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+}
+.open-btn {
+  padding-top: 12px;
+  width: 2px;
+}
+.delete-btn{
+  color: #794612;
+}
+.delete-btn :hover{
+  opacity: 1;
+  cursor: pointer;
+}
+
+.action-btn{
+  /* content in button */
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  /* button */
+  background-color: #FF902B;
+  width: 110px;
+  height: 30px;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 import './login.css'
 import logo from './Logo.png'
 import { useState } from "react"
+import { redirect } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 
 function Login(props) {
@@ -37,6 +38,7 @@ function Login(props) {
         const json = await res.json()
         if (json.result === "success") {
             console.log("success")
+            return redirect("/user/product")
         }
         else {
             setErrorMessages(json.message)

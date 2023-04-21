@@ -14,6 +14,7 @@ import Product from './User/Product/product';
 import Cart from './User/Cart/cart';
 import EditProfile from './User/EditProfile/editprofile';
 import Order from './User/Order/order';
+import Purchase from './User/Purchase/Purchase';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
               <Route path='/user/cart' element={< Cart/>} />
               <Route path='/user/edit' element={< EditProfile/>} />
               <Route path='/user/order' element={< Order/>} />
+              <Route path='/user/purchase' element={< Purchase/>} />
             </Routes>
           </Router>
     </div>
