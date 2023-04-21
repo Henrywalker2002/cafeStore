@@ -5,7 +5,15 @@ import PurRow from "./PurRow";
 function PurTable({ state }) {
   const [orderList, setOrderList] = useState([]);
   // username
-  const username = "username12";
+  const [username, setItems] = useState("");
+
+  useEffect(() => {
+      const user = JSON.parse(localStorage.getItem('username'));
+      if (user) {
+          setItems(user);
+          console.log(user)
+      }
+  }, []);
 
   async function getData() {
     var requestOptions = {
