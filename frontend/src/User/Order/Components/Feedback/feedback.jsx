@@ -1,11 +1,12 @@
 import './feedback.css'
 import Star from './Star1.png'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function MyFeedback(props) {
     const id = props.id
     const [star, setStar] = useState(0);
     const [comment, setComment] = useState("");
+    const [hidden, setHidden] = useState(true);
 
     const handleChangeStar = event => {
         setStar(event.target.value);
@@ -37,8 +38,17 @@ function MyFeedback(props) {
         
     };
 
+    useEffect(() => {
+        async function checkstate() {
+            if (props.status === "completed") {
+                setHidden(false)
+            }
+        }
+        checkstate()
+    } , [props.status])
+
     return (
-        <form onSubmit={handleSubmitFeedback} id="myfeedback" className="my-feedback">
+        <form onSubmit={handleSubmitFeedback} id="myfeedback" className="my-feedback" hidden={hidden}>
             <label className='h4'>MY FEEDBACK:</label>
             <img src={Star} alt="star rate"/>
             <select name="rate" id="rate" defaultValue={props.star} onChange={handleChangeStar}>

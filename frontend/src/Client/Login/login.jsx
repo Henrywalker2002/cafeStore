@@ -1,13 +1,15 @@
 import './login.css'
 import logo from './Logo.png'
-import { useState } from "react"
-import { redirect } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { Navigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
+import { Dialog } from '@mui/material';
 
 function Login(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessages, setErrorMessages] = useState("");
+    const [changepage, setChangepage] = useState(false)
     
     // User Login info
     const handleChangeUser = event => {
@@ -17,7 +19,13 @@ function Login(props) {
     const handleChangePass = event => {
         setPassword(event.target.value);
     }
-    
+    // Set username login info
+    const [items, setItems] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem('username', JSON.stringify(items));
+    }, [items]);
+
     // Submit
     async function handleSubmit(event) {
         //Prevent page reload
@@ -37,8 +45,8 @@ function Login(props) {
         const res = await fetch("http://103.77.173.109:9000/index.php/login", requestOptions);
         const json = await res.json()
         if (json.result === "success") {
-            console.log("success")
-            return redirect("/user/product")
+            setItems(username)
+            setChangepage(true)
         }
         else {
             setErrorMessages(json.message)
@@ -67,6 +75,10 @@ function Login(props) {
                     <a href='/client/signup' className='new-member'>New member?</a>
                 </div>
             </div>
+            <Dialog  open={changepage}>
+                <Navigate to='/user/product'/>
+            </Dialog>
+            
         </div>
     );
 }

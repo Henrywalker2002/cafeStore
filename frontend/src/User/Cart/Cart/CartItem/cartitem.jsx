@@ -70,6 +70,7 @@ function CartItem(props) {
         const res = await fetch("http://103.77.173.109:9000/index.php/cart", requestOptions);
         const json = await res.json();
         console.log(json)
+        console.log(raw)
         if (json.result === "ok") {
             setOpenConfirm(false)
         }

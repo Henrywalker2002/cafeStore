@@ -1,24 +1,43 @@
-import logo from "./logo.png";
-import user from "./user.png";
-import cart from "./cart.png";
-import "./Header.css";
+import logo from "./logo.png"
+import user from "./user.png"
+import cart from "./cart.png"
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import './Header.css'
 
 function Header(props) {
-  return (
-    <div className="head">
-      <img className="img-left" src={logo} alt="logo" />
+    return (
+        <Navbar className="head">
+            <Container>
+                <Navbar.Brand href="#home">
+                    <img className="img-left" src={logo} alt="logo"/>
+                </Navbar.Brand>
+                
+                <Nav className="head-middle">
+                    <Nav.Link href="#about">About us</Nav.Link>
+                    <Nav.Link href="/user/product">Our Product</Nav.Link>
+                    <Nav.Link href="#home">Delivery</Nav.Link>
+                </Nav>
 
-      <div className="head-middle">
-        <span className="page">About us</span>
-        <span className="page">Our Product</span>
-        <span className="page">Delivery</span>
-      </div>
-
-      <img className="img-right" src={user} alt="user" />
-      <img className="img-right" src={cart} alt="cart" />
-      <input type="text" className="search-box img-right"></input>
-    </div>
-  );
+                <Navbar.Brand href="/user/edit">
+                    <img className="img-right" src={user} alt="user"/>
+                </Navbar.Brand>
+                <Navbar.Brand href="/user/cart">
+                    <img className="img-right" src={cart} alt="cart"/>
+                </Navbar.Brand>
+                <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2 search-box img-right"
+                    aria-label="Search"
+                  />
+                </Form>
+            </Container>
+        </Navbar>
+    );
 }
 
 export default Header;

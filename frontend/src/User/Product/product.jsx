@@ -7,6 +7,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 
 function Product(props) {
+    const [items, setItems] = useState("");
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('username'));
+        if (user) {
+            setItems(user);
+            console.log(user)
+        }
+    }, []);
+
+
     const [itemList, setItemList] = useState([]);
 
     async function getData() { 
@@ -25,7 +36,7 @@ function Product(props) {
     } , [])
 
     var trls = itemList.map(element => {
-        return <ProductItem name={element.name} description={element.description} price={element.price} image={element.image} key={element.id} id={element.id}/>
+        return <ProductItem name={element.name} description={element.description} price={element.price} image={element.image} key={element.id} id={element.id} username={items}/>
     });
 
     return (

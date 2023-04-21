@@ -5,20 +5,29 @@ import CartCost from "./Cart/CartCost/cartcost"
 import CartItem from "./Cart/CartItem/cartitem"
 import CartHeader from "./Cart/CartItemHeader/cartiheader"
 import { useEffect, useState } from "react"
+import { format } from 'react-string-format';
 
 function Cart(props) {
     const [listItem, setListItem] = useState([]);
     const [userInfo, setUserInfo] = useState({});
     const [subtotal, setSubtotal] = useState(0);
     const [listDrink, setListDrink] = useState({});
+    const [orderId, setOrderId] = useState(0);
     
-    const username = "username"
+    const [items, setItems] = useState("");
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('username'));
+        if (user) {
+            setItems(user);
+            console.log(user)
+        }
+    }, []);
+    const username = items
 
     useEffect(() => {
         async function getData() {    
-            var url = "http://103.77.173.109:9000/index.php/cart?"
-
-            if (username) {url += "username=" + String(username) }
+            var url = "http://103.77.173.109:9000/index.php/cart?username=" + String(username)
     
             var requestOptions = {
                 method: 'GET',
@@ -68,9 +77,13 @@ function Cart(props) {
                     </tbody>
                 </table>
                 </div>
-                <CartCost subtotal={subtotal} username={username} listdrink={listDrink}/>
+                <CartCost subtotal={subtotal} username={username} listdrink={listDrink} getID={setOrderId}/>
             </div>
-            <button type="submit">Update Cart</button>
+            <div className="view-order">
+                <a href="/user/purchase">Go to your purchase</a>
+                <a href={format('/user/order?id={0}', orderId)}>Go to your order</a>
+            </div>
+            <div className="view-order"></div>
         </div>
     );
 }

@@ -7,12 +7,14 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
 function ProductItem(props) {
-    const [open, setOpen] = useState(false);
+    const [openError, setOpenError] = useState(false);
+    const [openSuccess, setOpenSuccess] = useState(false);
     const [message, setMessage] = useState("");
-    const username = "username"
+    const username = props.username
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenError(false);
+        setOpenSuccess(false);
     };
 
     async function addCart() {
@@ -30,12 +32,17 @@ function ProductItem(props) {
 
         const res = await fetch("http://103.77.173.109:9000/index.php/cart", requestOptions);
         const json = await res.json()
+        console.log(body)
         if (json.result === "fail") {
-            setOpen(true)
+            setOpenError(true)
             setMessage(json.message)
         }
+        else if (json.result === "success") {
+            setOpenSuccess(true)
+            setMessage("Success add to cart.")
+        }
         else if (json.result !== "success") {
-            setOpen(true)
+            setOpenError(true)
             setMessage("Something went wrong please check again!")
         }
     }
@@ -53,9 +60,15 @@ function ProductItem(props) {
                 <p>{props.price}VND</p>
                 <Button bg="white"><img src={cart} className="product-cart" alt="cart" onClick={addCart}/></Button>
             </div>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={openError} onClose={handleClose}>
                 <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
+                    {message}
+                </Alert>
+            </Dialog>
+            <Dialog open={openSuccess} onClose={handleClose}>
+                <Alert severity="success">
+                    <AlertTitle>Success</AlertTitle>
                     {message}
                 </Alert>
             </Dialog>

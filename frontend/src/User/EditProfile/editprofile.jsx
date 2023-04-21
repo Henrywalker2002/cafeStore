@@ -9,9 +9,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { Navigate } from "react-router-dom";
 
 function EditProfile(props) {
-    const [username, setUsername] = useState("");
+    const [userInfo, setUserInfo] = useState({});
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -20,12 +21,19 @@ function EditProfile(props) {
     const [errorMessages, setErrorMessages] = useState("");
     const [renderErrorMessage, setRenderErrorMessage] = useState(<div></div>);
     const [openConfirm, setOpenConfirm] = useState(false);
+    const [changepage, setChangepage] = useState(false)
     
-    // User Login info
-    const handleChangeUser = event => {
-        setUsername(event.target.value);
-    }
+    const [username, setItems] = useState("");
 
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('username'));
+        if (user) {
+            setItems(user);
+            console.log(user)
+        }
+    }, []);
+
+    // User Login info
     const handleChangeFull = event => {
         setFullname(event.target.value);
     }
@@ -63,6 +71,8 @@ function EditProfile(props) {
             "email" : email,
             "birthday" : birthday,
             "name" : fullname,
+            "phone" : phone,
+            "address" : address,
         });
 
         var requestOptions = {
@@ -74,9 +84,11 @@ function EditProfile(props) {
 
         const res = await fetch("http://103.77.173.109:9000/index.php/account", requestOptions);
         const json = await res.json()
+        console.log(raw)
         console.log(json)
         if (json.result === "success") {
             setErrorMessages("success!!")
+            setChangepage(true)
         }
         else {
             setErrorMessages(json.message)
@@ -93,6 +105,23 @@ function EditProfile(props) {
         }
     } , [errorMessages, setRenderErrorMessage])
 
+    useEffect(() => {
+        async function getUser() {
+            var url = "http://103.77.173.109:9000/index.php/account?username=" + String(username)
+    
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+            
+            const res = await fetch(url, requestOptions);
+            const response = await res.json()
+
+            setUserInfo(response.message)        
+        }
+        getUser()
+    } , [userInfo, username])
+
     return (
         <div>
             <Header />
@@ -104,31 +133,31 @@ function EditProfile(props) {
                             <tr>
                                 <td>
                                     <label>Username</label><br/>
-                                    <input type="text" id="username" name="username" required onChange={handleChangeUser}/>
+                                    <input type="text" id="fname" name="fname" value={username} disabled/>
                                 </td>
                                 <td>
-                                    <label>Fullname</label><br/>
-                                    <input type="text" id="fullname" name="fullname" required onChange={handleChangeFull}/>
+                                    <label>Last name</label><br/>
+                                    <input type="text" id="fullname" name="fullname" defaultValue={userInfo.name} required onChange={handleChangeFull}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label>Email</label><br/>
-                                    <input type="text" id="email" name="email" required placeholder="abc@gmail.com" onChange={handleChangeEmail}/>
+                                    <input type="text" id="email" name="email" defaultValue={userInfo.email} required placeholder="abc@gmail.com" onChange={handleChangeEmail}/>
                                 </td>
                                 <td>
                                     <label>Phone number</label><br/>
-                                    <input type="text" id="phone" name="phone" required placeholder="0123456789" onChange={handleChangePhone}/>
+                                    <input type="text" id="phone" name="phone" defaultValue={userInfo.phone} required placeholder="0123456789" onChange={handleChangePhone}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label>Birthday</label><br/>
-                                    <input type="text" id="birthday" name="birthday" required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
+                                    <input type="text" id="birthday" name="birthday" defaultValue={userInfo.birthday} required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
                                 </td>
                                 <td>
                                     <label>Address</label><br/>
-                                    <input type="text" id="address" name="address" required onChange={handleChangeAddress}/>
+                                    <input type="text" id="address" name="address" defaultValue={userInfo.address} required onChange={handleChangeAddress}/>
                                 </td>
                             </tr>
                         </tbody>
@@ -157,6 +186,9 @@ function EditProfile(props) {
                 </form>
                 <button className='editprofile-button' onClick={showdialog}>Change</button>
             </div>
+            <Dialog  open={changepage}>
+                <Navigate to='/user/product'/>
+            </Dialog>
         </div>
     );
 }

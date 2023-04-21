@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 
 function CartCost(props) {
     const [code, setCode] = useState("");
+    const [percent, setPercent] = useState(0);
     const [address, setAddress] = useState("");
     const [point, setPoint] = useState(false);
     const [shipping, setShippng] = useState(0);
@@ -22,6 +23,10 @@ function CartCost(props) {
         setOpen(false);
         setOpenConfirm(false);
     };
+
+    function openDialog() {
+        setOpenConfirm(true)
+    }
 
     function handleChangePoint(e) {
         setPoint(e.target.checked);
@@ -54,6 +59,7 @@ function CartCost(props) {
             }
             else {
                 setMessage("This code sale " + String(json.message.percent) + "%")
+                setPercent(parseInt(json.message.percent))
             }
         }
         else {
@@ -96,8 +102,9 @@ function CartCost(props) {
         if (json.result === "success") {
             setOpen(true)
             setTotal(json.message.totalfee)
-            setShippng(json.message.totalfee - props.subtotal)
+            setShippng( parseFloat(json.message.totalfee)*100/(100-percent) - props.subtotal)
             setMessage("success")
+            props.getID(json.message.orderId)
         }
         else if (json.result === "fail") {
             setOpen(true)
@@ -133,26 +140,26 @@ function CartCost(props) {
                     </Alert>
                 </Dialog>
                 <Dialog open={openConfirm} onClose={handleClose}>
-                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                    Subscribe
+                    <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                        Subscribe
                     </DialogTitle>
                     <DialogContent>
-                    <DialogContentText>
-                        Do you want to procceed checkout ? 
-                    </DialogContentText>
+                        <DialogContentText>
+                            Do you want to procceed checkout ? 
+                        </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button autoFocus onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={createOrder}>Delete</Button>
+                        <Button onClick={createOrder}>Yes</Button>
                     </DialogActions>
                 </Dialog>
             </div>
             <div className="total">
                 <span>TOTAL</span><p id="total-payment">{total}</p>
             </div>
-            <button id="checkout-button" onClick={createOrder}>PROCEED TO CHECKOUT</button>
+            <button id="checkout-button" onClick={openDialog}>PROCEED TO CHECKOUT</button>
         </div>
     );
 }

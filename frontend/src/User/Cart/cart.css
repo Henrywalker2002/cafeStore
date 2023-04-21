@@ -12,6 +12,7 @@
   width: 1100px;
   margin-left: auto;
   margin-right: auto;
+  height: 600px;
 }
 
 .cart-itemlist {
@@ -25,4 +26,21 @@
   text-align: left;
   float: left;
   overflow-y: scroll;
+}
+
+.view-order {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.view-order a {
+  text-decoration: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  background-color: #794612;
 }

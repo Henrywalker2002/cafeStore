@@ -15,7 +15,7 @@ function SummaryTable(props) {
     }, [props.drink])
     
     var trls = Array.from(listdrink).map((element, index) => {
-        return <SummaryTableRow product={String(element.name) + " x " + String(element.number)} total={0} key={index}/>
+        return <SummaryTableRow product={String(element.name)} total={"x" + String(element.number)} key={index}/>
     })
 
     return (
@@ -28,9 +28,9 @@ function SummaryTable(props) {
             </thead>
             <tbody>
                 {trls}
-                <SummaryTableRow product="SUBTOTAL" total={props.subtotal}/>
-                <SummaryTableRow product="SHIPPING" total={props.shipping}/>
-                <SummaryTableRow product="TOTAL" total={props.total}/>
+                <SummaryTableRow product="SUBTOTAL" total={String(props.subtotal) + "VND"}/>
+                <SummaryTableRow product="SHIPPING" total={String(props.shipping) + "VND"}/>
+                <SummaryTableRow product="TOTAL" total={String(props.total) + "VND"}/>
             </tbody>
         </table>
     );

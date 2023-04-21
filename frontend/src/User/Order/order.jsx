@@ -12,17 +12,23 @@ function Order(props) {
     const [userInfo, setUserInfo] = useState({});
     const queryParams = new URLSearchParams(window.location.search)
     
+    const [username, setItems] = useState("");
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('username'));
+        if (user) {
+            setItems(user);
+            console.log(user)
+        }
+    }, []);
+
     var id = queryParams.get("id")
-    var username = queryParams.get("username")
-    var staffUsername = queryParams.get("staffUsername")
 
     useEffect(() => {
         async function getData() {
             var url = "http://103.77.173.109:9000/index.php/order?"
-            if (id) {url += "id=" + String(id) + "&"}
-            if (username) {url += "username=" + String(username) + "&"}
-            if (staffUsername) {url += "staffUsername=" + String(staffUsername) + "&"}
-            url.slice(0, url.length - 1)
+            if (id) {
+                url += "id=" + String(id)
+            }
     
             var requestOptions = {
                 method: 'GET',
@@ -41,7 +47,7 @@ function Order(props) {
             }        
         }
         getData()
-    } , [listElement, element, id ,staffUsername, username])
+    } , [listElement, element, id, username])
 
     useEffect(() => {
         async function getUser() {
@@ -58,7 +64,7 @@ function Order(props) {
             setUserInfo(response.message)        
         }
         getUser()
-    } , [listElement, element, id ,staffUsername, username])
+    } , [listElement, element, id, username])
 
     var orderTitle = "My order: " + String(element.id)
 
@@ -67,7 +73,7 @@ function Order(props) {
             <Header />
             <Title title={orderTitle}/>
             <div className="order-content">
-                <div className="order-detail">
+                <div className="order-detailtable">
                     <h2>Order Details</h2>
                     <DetailTable username={element.username} email={userInfo.email} phone={userInfo.phone} date={element.timeStart} address={element.address} status={element.statement}/>
                 </div>
@@ -75,7 +81,7 @@ function Order(props) {
                     <h2>Order Summary</h2>
                     <SummaryTable drink={element.drink} subtotal={element.fee} shipping={element.transportFee} total={element.totalFee}/>
                 </div>
-                <MyFeedback feedback={element.feedback} star={element.star} id={element.id}/>
+                <MyFeedback feedback={element.feedback} star={element.star} id={element.id} status={element.statement}/>
             </div>
         </div>
     );
