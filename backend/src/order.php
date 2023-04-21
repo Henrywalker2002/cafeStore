@@ -335,4 +335,17 @@ class Order {
         return $res;
     }
 
+    public function getIncome() {
+        try {
+            $query = "SELECT timeComplete, SUM(fee) as income FROM `order` WHERE statement = 3 GROUP BY timeComplete";
+            $res = $this->conn->query($query);
+            $arr = $res->fetch_all(MYSQLI_ASSOC);
+            $res = ["result" => "success", "message" => $arr];
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        return $res;
+    }
+
 }

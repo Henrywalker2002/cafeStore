@@ -388,4 +388,17 @@ elseif ($uri[2] == 'feedback') {
     }
 }
 
+elseif ($uri[2] == "income") {
+    $order = new Order();
+    if ($method == "GET") {
+        try {
+            $res = $order->getIncome();
+        }
+        catch (Exception $e) {
+            $res = ["result" => "fail", "message" => $e->getMessage()];
+        }
+        echo json_encode($res);
+    }
+}
+
 ?>
