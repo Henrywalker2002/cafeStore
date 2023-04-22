@@ -1,0 +1,23 @@
+.reportContainer {
+    width: 70%;
+    height: 550px;
+    text-align: center;
+}
+
+#select-day {
+    margin: auto;
+    float: right;
+}
+
+.col2 {
+    margin: auto;
+}
+
+.row {
+    margin-top: 10px;
+}
+
+.container2 {
+    width: 100%;
+    text-align: center;
+}
