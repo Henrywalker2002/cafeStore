@@ -57,7 +57,7 @@ function CartItem(props) {
 
         var raw = JSON.stringify({
             "username" : props.username,
-            "drinkId": 1
+            "drinkId": props.id
         });
 
         var requestOptions = {
@@ -69,10 +69,10 @@ function CartItem(props) {
 
         const res = await fetch("http://103.77.173.109:9000/index.php/cart", requestOptions);
         const json = await res.json();
-        console.log(json)
-        console.log(raw)
+        props.refresh(true)
         if (json.result === "ok") {
             setOpenConfirm(false)
+            props.callback(props.subtotal - price*quantity)
         }
         else {
             setMessageDelete("something went wrong, please reload page");

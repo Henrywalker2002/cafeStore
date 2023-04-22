@@ -5,14 +5,13 @@ import CartCost from "./Cart/CartCost/cartcost"
 import CartItem from "./Cart/CartItem/cartitem"
 import CartHeader from "./Cart/CartItemHeader/cartiheader"
 import { useEffect, useState } from "react"
-import { format } from 'react-string-format';
 
 function Cart(props) {
     const [listItem, setListItem] = useState([]);
     const [userInfo, setUserInfo] = useState({});
     const [subtotal, setSubtotal] = useState(0);
     const [listDrink, setListDrink] = useState({});
-    const [orderId, setOrderId] = useState(0);
+    const [refresh, setRefresh] = useState(false);
     
     const [items, setItems] = useState("");
 
@@ -37,9 +36,10 @@ function Cart(props) {
             const res = await fetch(url, requestOptions);
             const response = await res.json()
             setListItem(response.message)
+            setRefresh(false)
         }
         getData()
-    } , [listItem, username])
+    } , [listItem, username, refresh])
 
     useEffect(() => {
         async function getUser() {
@@ -61,7 +61,7 @@ function Cart(props) {
     var trls = listItem.map((element, index) => {
         if (!element.id) return <tr key={index} hidden></tr>
         else {
-            return <CartItem id={element.id} image={element.image} key={element.id} name={element.name} price={element.price} description={element.description} username={username} callback={setSubtotal} subtotal={subtotal} callbacklist={setListDrink} listdrink={listDrink}/>
+            return <CartItem id={element.id} image={element.image} key={element.id} name={element.name} price={element.price} description={element.description} username={username} callback={setSubtotal} subtotal={subtotal} refresh={setRefresh} callbacklist={setListDrink} listdrink={listDrink}/>
         }
     })
     return (
@@ -77,11 +77,10 @@ function Cart(props) {
                     </tbody>
                 </table>
                 </div>
-                <CartCost subtotal={subtotal} username={username} listdrink={listDrink} getID={setOrderId}/>
+                <CartCost subtotal={subtotal} username={username} listdrink={listDrink}/>
             </div>
             <div className="view-order">
                 <a href="/user/purchase">Go to your purchase</a>
-                <a href={format('/user/order?id={0}', orderId)}>Go to your order</a>
             </div>
             <div className="view-order"></div>
         </div>

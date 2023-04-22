@@ -7,6 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { Navigate } from "react-router-dom";
+import { format } from 'react-string-format';
 
 function CartCost(props) {
     const [code, setCode] = useState("");
@@ -18,6 +20,8 @@ function CartCost(props) {
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
     const [openConfirm, setOpenConfirm] = useState(false);
+    const [changepage, setChangepage] = useState(false)
+    const [orderId, setOrderId] = useState(0)
 
     const handleClose = () => {
         setOpen(false);
@@ -104,7 +108,8 @@ function CartCost(props) {
             setTotal(json.message.totalfee)
             setShippng( parseFloat(json.message.totalfee)*100/(100-percent) - props.subtotal)
             setMessage("success")
-            props.getID(json.message.orderId)
+            setOrderId(json.message.orderId)
+            setChangepage(true)
         }
         else if (json.result === "fail") {
             setOpen(true)
@@ -154,6 +159,9 @@ function CartCost(props) {
                         </Button>
                         <Button onClick={createOrder}>Yes</Button>
                     </DialogActions>
+                </Dialog>
+                <Dialog  open={changepage}>
+                    <Navigate to={format('/user/order?id={0}', orderId)}/>
                 </Dialog>
             </div>
             <div className="total">

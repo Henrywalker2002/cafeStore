@@ -16,6 +16,8 @@ import EditProfile from './User/EditProfile/editprofile';
 import Order from './User/Order/order';
 import Purchase from './User/Purchase/Purchase';
 
+import Home from './Home/index';
+
 function App() {
 
   return (
@@ -36,6 +38,8 @@ function App() {
               <Route path='/user/edit' element={< EditProfile/>} />
               <Route path='/user/order' element={< Order/>} />
               <Route path='/user/purchase' element={< Purchase/>} />
+
+              <Route path='/' element={< Home/>} />
             </Routes>
           </Router>
     </div>
