@@ -11,6 +11,10 @@
     padding: 10px;
 }
 
+.footer ul {
+    list-style-type: none;
+}
+
 .left-content-footer {
     width: 45%;
     float: left;
@@ -19,4 +23,9 @@
 .right-content-footer {
     width: 45%;
     float: right;
+}
+
+.right-content-footer a {
+    color: white;
+    text-decoration: none;
 }

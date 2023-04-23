@@ -21,14 +21,13 @@ function Footer(props) {
 
     return (
         <footer className="footer">
+            <p>{infor.banner}</p>
             <div className="left-content-footer">
                 <label>Các chi nhánh:</label>
                 <ul>
                     <li><label>Address :</label>{infor.address}</li>
                     <li><label>Time open :</label>{infor.timeOpen} - {infor.timeClose}</li>
-                    <li><label>Phone :</label>{infor.phone}</li>
                 </ul>
-                
             </div>
             <div className="right-content-footer">
                 <label>Contact us:</label>
@@ -37,7 +36,6 @@ function Footer(props) {
                     <li><label>Email :</label>{infor.email}</li>
                     <li><a href="https://facebook.com">Facebook</a></li>
                 </ul>
-                
             </div>
         </footer>
     );
