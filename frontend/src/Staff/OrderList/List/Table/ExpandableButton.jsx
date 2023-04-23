@@ -4,7 +4,7 @@ function ExpandableButton({isOpen, toggle}) {
     
   return (
     <div className='button' onClick={toggle}>
-        <span className="material-symbols-outlined" style={{
+        <span class="material-symbols-outlined" style={{
             transform: `rotate(${isOpen ? 0 : -90}deg)`,
             transition: "all 0.25s"
         }}>expand_more</span>

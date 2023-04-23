@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /* Search Bar */
 .searchBar{
     position: relative;
@@ -38,6 +39,7 @@
     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
     color: #ffffff;
     font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -82,6 +84,9 @@
 .menu-list-td {
     font-family: 'Inter', sans-serif;
 }
+/* .menu-list-td {
+    padding-right: 50px;
+} */
 img.icon{
     color: #794612;
     margin-right: 10px;
