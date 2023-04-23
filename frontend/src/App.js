@@ -6,7 +6,7 @@ import Menu_management from './Admin/Menu_management/Menu_management';
 import Account_list from './Admin/Account_list/Account_list';
 import Edit_staff from './Admin/Account_list/Edit_staff';
 import Add_staff from './Admin/Account_list/Add_staff';
-import Purchase from './User/purchase/Purchase';
+import Purchase from './User/Purchase/Purchase';
 
 import Login from './Client/Login/login';
 import Signup from './Client/SignUp/signup';
@@ -15,7 +15,6 @@ import Product from './User/Product/product';
 import Cart from './User/Cart/cart';
 import EditProfile from './User/EditProfile/editprofile';
 import Order from './User/Order/order';
-import Purchase from './User/purchase/Purchase';
 
 import Home from './Home/index';
 import Logout from './User/Logout/logout';
