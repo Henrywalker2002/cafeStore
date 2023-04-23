@@ -14,7 +14,7 @@ function Order(props) {
     
     const [username, setItems] = useState("");
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('username'));
+        const user = localStorage.getItem('username');
         if (user) {
             setItems(user);
             console.log(user)

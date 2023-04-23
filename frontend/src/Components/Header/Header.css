@@ -23,6 +23,10 @@
   font-size: 18px;
 }
 
+.right {
+  float: right;
+}
+
 span.page {
   margin-left: 32px;
 }

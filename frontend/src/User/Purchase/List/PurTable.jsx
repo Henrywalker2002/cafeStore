@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./Table.css";
 import PurRow from "./PurRow";
+import { useCookies } from "react-cookie";
 
 function PurTable({ state }) {
+  const [cookies, setCookie, removeCookie] = useCookies(['username', 'type']);
   const [orderList, setOrderList] = useState([]);
   // username
-  const [username, setItems] = useState("");
-
-  useEffect(() => {
-      const user = JSON.parse(localStorage.getItem('username'));
-      if (user) {
-          setItems(user);
-          console.log(user)
-      }
-  }, []);
+  const [username, setUsername] = useState(localStorage.getItem('username'));
 
   async function getData() {
+
     var requestOptions = {
       method: "GET",
       redirect: "follow",
     };
 
     const res = await fetch(
-      "http://103.77.173.109:9000/index.php/order?username=username12",
+      "http://103.77.173.109:9000/index.php/order?username=" + username,
       requestOptions
     );
     const response = await res.json();

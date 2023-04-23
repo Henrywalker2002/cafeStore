@@ -3,8 +3,16 @@ import title from './signup_logo.png'
 import { useEffect, useState } from "react"
 import Header from "../../Components/Header/Header";
 import Table from 'react-bootstrap/Table';
+import { useNavigate } from 'react-router-dom';
+
 
 function Signup(props) {
+    const navigate = useNavigate();
+
+    if (localStorage.getItem('username')) {
+        navigate('/');
+    }
+
     const [username, setUsername] = useState("");
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
@@ -14,6 +22,7 @@ function Signup(props) {
     const [password, setPassword] = useState("");
     const [errorMessages, setErrorMessages] = useState("");
     const [renderErrorMessage, setRenderErrorMessage] = useState(<div></div>);
+
     
     // User Login info
     const handleChangeUser = event => {
@@ -81,6 +90,7 @@ function Signup(props) {
         if (json.result === "success") {
             setErrorMessages("")
             console.log("success")
+            navigate('/client/login')
         }
         else {
             setErrorMessages(json.message)

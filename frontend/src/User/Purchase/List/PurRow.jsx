@@ -11,8 +11,10 @@ import ExpandableButton from "./ExpandableButton";
 import useOpenController from "./useOpenController";
 import "./Table.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function PurRow({ orderInfo, index, getData }) {
+  const navigate = useNavigate();
   const { isOpen, toggle } = useOpenController(false);
   const [status, setStatus] = useState("");
   const [action, setAction] = useState("");
@@ -143,10 +145,14 @@ function PurRow({ orderInfo, index, getData }) {
     setOpenCancel(false);
   }
 
+  function redirect(id) {
+    navigate('/user/order?id=' + id.toString())
+  }
+
   return (
     <tbody className="order-list-body">
       <tr className="order-list-tr" key={index}>
-        <td className="order-list-td">{orderInfo.id}</td>
+        <td className="order-list-td orderid" >{orderInfo.id}</td>
         <td className="order-list-td">{orderInfo.timeStart}</td>
         <td className="order-list-td">{status}</td>
         <td className="order-list-td">{orderInfo.totalFee}</td>
@@ -157,7 +163,7 @@ function PurRow({ orderInfo, index, getData }) {
             </button>
           )}
         </td>
-        <td className="button-td">
+        <td className="button-td" onClick={() => {redirect(orderInfo.id)}}>
           <ExpandableButton isOpen={isOpen} toggle={toggle} />
         </td>
       </tr>

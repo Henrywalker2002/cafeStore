@@ -10,7 +10,7 @@ function Product(props) {
     const [items, setItems] = useState("");
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('username'));
+        const user = localStorage.getItem('username');
         if (user) {
             setItems(user);
             console.log(user)
@@ -36,7 +36,7 @@ function Product(props) {
     } , [])
 
     var trls = itemList.map(element => {
-        return <ProductItem name={element.name} description={element.description} price={element.price} image={element.image} key={element.id} id={element.id} username={items}/>
+        return <ProductItem name={element.name} description={""} price={element.price} image={element.image} key={element.id} id={element.id} username={items}/>
     });
 
     return (

@@ -4,12 +4,18 @@ import { useEffect, useState } from "react"
 import { Navigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import { Dialog } from '@mui/material';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
+    const [cookies, setCookie] = useCookies(['username', 'type']);
+    console.log(cookies)
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessages, setErrorMessages] = useState("");
     const [changepage, setChangepage] = useState(false)
+
     
     // User Login info
     const handleChangeUser = event => {
@@ -23,7 +29,11 @@ function Login(props) {
     const [items, setItems] = useState("");
 
     useEffect(() => {
-        localStorage.setItem('username', JSON.stringify(items));
+        console.log(localStorage.getItem('username'))
+        if (localStorage.getItem('username')) {
+            navigate('/');
+        }
+        
     }, [items]);
 
     // Submit
@@ -47,6 +57,13 @@ function Login(props) {
         if (json.result === "success") {
             setItems(username)
             setChangepage(true)
+            localStorage.setItem('username', username)
+            localStorage.setItem('type', json.message.type)
+            localStorage.setItem('image', json.message.avt)
+            // setCookie("username", username, {path : '/'})
+            // setCookie("type", json.message.type, {path : '/'})
+            console.log(json)
+            console.log(cookies)
         }
         else {
             setErrorMessages(json.message)
