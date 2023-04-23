@@ -41,3 +41,7 @@ span.page {
   border-radius: 15px;
   border: 0px;
 }
+
+.header-active {
+  color: blue;
+}

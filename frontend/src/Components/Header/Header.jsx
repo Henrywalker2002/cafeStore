@@ -7,18 +7,34 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Header.css'
+import { useEffect, useState } from "react"
 
 function Header(props) {
+    let url = window.location.href
+    const [render, setRender] = useState();
+
+    useEffect(() => {
+        async function checkurl() {    
+            if(url === "http://localhost:3000/user/product") {
+                setRender(<Nav.Link href="/user/product" active><p className="header-active">Our Product</p></Nav.Link>)
+            }
+            else {
+                setRender(<Nav.Link href="/user/product">Our Product</Nav.Link>)
+            }
+        }
+        checkurl()
+    } , [url])
+    
+
     return (
         <Navbar className="head">
             <Container>
                 <Navbar.Brand href="/">
                     <img className="img-left" src={logo} alt="logo"/>
                 </Navbar.Brand>
-                
                 <Nav className="head-middle">
                     <Nav.Link href="/">About us</Nav.Link>
-                    <Nav.Link href="/user/product">Our Product</Nav.Link>
+                    {render}
                     <Nav.Link href="/">Delivery</Nav.Link>
                 </Nav>
                 <NavDropdown title={<img className="img-right" src={user} alt="user"/>} id="navbarScrollingDropdown">

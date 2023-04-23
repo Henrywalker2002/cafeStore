@@ -13,7 +13,6 @@ function Product(props) {
         const user = JSON.parse(localStorage.getItem('username'));
         if (user) {
             setItems(user);
-            console.log(user)
         }
     }, []);
 
