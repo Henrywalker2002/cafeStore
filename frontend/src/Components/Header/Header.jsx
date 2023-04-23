@@ -41,7 +41,7 @@ function Header(props) {
                     <NavDropdown.Item href="/user/edit">Edit profile</NavDropdown.Item>
                     <NavDropdown.Item href="/user/purchase">My purchase</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/user/logout">Logout</NavDropdown.Item>
+                    <NavDropdown.Item href="/client/logout">Logout</NavDropdown.Item>
                 </NavDropdown>
                 <Navbar.Brand href="/user/cart">
                     <img className="img-right" src={cart} alt="cart"/>

@@ -17,7 +17,6 @@ import Order from './User/Order/order';
 import Purchase from './User/Purchase/Purchase';
 
 import Home from './Home/index';
-import Logout from './User/Logout/logout';
 
 function App() {
 
@@ -41,7 +40,6 @@ function App() {
               <Route path='/user/purchase' element={< Purchase/>} />
 
               <Route path='/' element={< Home/>} />
-              <Route path='/user/logout' element={< Logout/>} />
             </Routes>
           </Router>
     </div>
