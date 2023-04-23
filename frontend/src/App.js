@@ -19,6 +19,7 @@ import Purchase from './User/purchase/Purchase';
 
 import Home from './Home/index';
 import Logout from './User/Logout/logout';
+import Report from './Admin/Report/Report'
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
 
               <Route path='/' element={< Home/>} />
               <Route path='/user/logout' element={< Logout/>} />
+              <Route path='/admin/report' element = {<Report />} />
             </Routes>
           </Router>
     </div>
