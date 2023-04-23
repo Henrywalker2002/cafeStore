@@ -1,16 +1,16 @@
 import * as React from "react";
+import PurTable from "./List/PurTable";
+import Header from "../../Components/Header/Header";
+import Title from "../../Components/Title/Title";
+
+import { FaShoppingCart } from "react-icons/fa";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
-import Table from "./List/Table";
-import Header from "../../Components/Header/Header";
-import Title from "../../Components/Title/Title";
-import { FaClipboardList } from "react-icons/fa";
-
-function OrderList() {
+function Purchase() {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -20,8 +20,8 @@ function OrderList() {
     <div>
       <Header />
       <Title
-        title="Order List"
-        icon={<FaClipboardList className="title-icon" />}
+        title="Your Purchase"
+        icon={<FaShoppingCart className="title-icon" />}
       />
       {/* <StateNav /> */}
       <Box sx={{ width: "100%", typography: "body1" }}>
@@ -32,19 +32,27 @@ function OrderList() {
               <Tab label="Processing" value="2" className="state-tab" />
               <Tab label="Shipping" value="3" className="state-tab" />
               <Tab label="Success" value="4" className="state-tab" />
+              <Tab label="Cancelation" value="5" className="state-tab" />
+              <Tab label="Rated" value="6" className="state-tab" />
             </TabList>
           </Box>
           <TabPanel value="1">
-            <Table state="all" />
+            <PurTable state="all" />
           </TabPanel>
           <TabPanel value="2">
-            <Table state="Processing" />
+            <PurTable state="Processing" />
           </TabPanel>
           <TabPanel value="3">
-            <Table state="Shipping" />
+            <PurTable state="Shipping" />
           </TabPanel>
           <TabPanel value="4">
-            <Table state="Success" />
+            <PurTable state="Success" />
+          </TabPanel>
+          <TabPanel value="5">
+            <PurTable state="Cancelation" />
+          </TabPanel>
+          <TabPanel value="6">
+            <PurTable state="Rated" />
           </TabPanel>
         </TabContext>
       </Box>
@@ -52,4 +60,4 @@ function OrderList() {
   );
 }
 
-export default OrderList;
+export default Purchase;
