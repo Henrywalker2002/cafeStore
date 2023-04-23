@@ -44,7 +44,7 @@ function Report() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="income" fill="#8884d8" />
+                <Bar dataKey="income" fill="#FFCB7C" />
             </BarChart>
         </ResponsiveContainer>
     )
