@@ -6,7 +6,7 @@ import Menu_management from './Admin/Menu_management/Menu_management';
 import Account_list from './Admin/Account_list/Account_list';
 import Edit_staff from './Admin/Account_list/Edit_staff';
 import Add_staff from './Admin/Account_list/Add_staff';
-import Purchase from './User/purchase/Purchase';
+import Purchase from './User/Purchase/Purchase';
 
 import Login from './Client/Login/login';
 import Signup from './Client/SignUp/signup';
@@ -22,26 +22,26 @@ import Report from './Admin/Report/Report'
 
 import NotFound from './NotFound/NotFound';
 
-import { useCookies } from 'react-cookie';
 
 function App() {
   // const [cookies, setCookie] = useCookies(['username', 'type']);
+  console.log(localStorage.getItem('type'))
 
   return (
     <div className="App">
       
       <Router>
             <Routes>
-
+              <Route exact path='/test' element={< OrderList/>} />
               <Route exact path='/user/purchase' element={< Purchase/>} />
               <Route exact path='/admin/acc-list' element={localStorage.getItem('type') === "admin" ? <Account_list/> : <NotFound/>} />
               <Route path='/admin/acc-list/edit-staff'  element={localStorage.getItem('type') === "admin" ? < Edit_staff/> : <NotFound />} />
-              <Route exact path='/staff/order-list' element={localStorage.getItem('type') === "admin" ? < OrderList/>  : <NotFound />} />
+             
               <Route path='/admin/acc-list/addStaff' element={localStorage.getItem('type') === "admin" ? < Add_staff/> : <NotFound />} />
               <Route path='/admin/menu' element={localStorage.getItem('type') === "admin" ? < Menu_management/> : <NotFound />} />
               <Route exact path='/admin/acc-list' element={localStorage.getItem('type') === "admin" ?<Account_list/>  : <NotFound />} />
               <Route exact path='/admin/acc-list/edit-staff' element={localStorage.getItem('type') === "admin"? < Edit_staff/>  : <NotFound />} />
-              <Route exact path='/staff/order-list' element={localStorage.getItem('type') === "staff"? < OrderList/>  : <NotFound />} />
+              <Route path='/staff/order-list' element={localStorage.getItem('type') === "staff" ? < OrderList/>  : <NotFound />} />
               <Route path='/admin/acc-list/addStaff' element={localStorage.getItem('type') === "admin"? < Add_staff/> : <NotFound />} />
               <Route path='/admin/menu' element={localStorage.getItem('type') === "admin"? < Menu_management/> : <NotFound />} />
 

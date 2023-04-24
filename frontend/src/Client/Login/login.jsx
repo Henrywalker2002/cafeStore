@@ -60,10 +60,7 @@ function Login(props) {
             localStorage.setItem('username', username)
             localStorage.setItem('type', json.message.type)
             localStorage.setItem('image', json.message.avt)
-            // setCookie("username", username, {path : '/'})
-            // setCookie("type", json.message.type, {path : '/'})
-            console.log(json)
-            console.log(cookies)
+            localStorage.setItem('point', json.message.point)
         }
         else {
             setErrorMessages(json.message)

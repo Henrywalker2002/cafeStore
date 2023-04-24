@@ -7,11 +7,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Header.css'
-import { useCookies } from "react-cookie";
 
 function Header(props) {
-    const [cookies, setCookie] = useCookies(['username', 'type']);
-    console.log(cookies.username)
 
     return (
         <Navbar className="head">
@@ -22,13 +19,14 @@ function Header(props) {
                 <Nav className="head-middle">
                     <Nav.Link href="/">About us</Nav.Link>
                     <Nav.Link href="/user/product">Our Product</Nav.Link>
-                    <Nav.Link href="/">Delivery</Nav.Link>
+                    {localStorage.getItem('type') === "user" ? <Nav.Link href="/user/purchase">Delivery</Nav.Link> : null} 
                     {!localStorage.getItem('username') ? < Nav.Link href="/client/login" className="right"> Sign In </Nav.Link> : null}
                     {!localStorage.getItem('username') ? < Nav.Link href="/client/signup" className="right"> Sign Up </Nav.Link> : null}
                 </Nav>
 
                 {localStorage.getItem('username') && localStorage.getItem('type') === 'user' ?
                 <NavDropdown title={<img className="img-right" src={user} alt="user"/>} id="navbarScrollingDropdown">
+                    <NavDropdown.Item href="#">Point : {localStorage.getItem('point')}</NavDropdown.Item>
                     <NavDropdown.Item href="/user/edit">Edit profile</NavDropdown.Item>
                     <NavDropdown.Item href="/user/purchase">My purchase</NavDropdown.Item>
                     <NavDropdown.Divider />
@@ -39,6 +37,13 @@ function Header(props) {
                 <NavDropdown title={<img className="img-right" src={user} alt="user"/>} id="navbarScrollingDropdown">
                     <NavDropdown.Item href="/admin/acc-list">Account Management</NavDropdown.Item>
                     <NavDropdown.Item href="/admin/menu">Menu Management</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/user/logout">Logout</NavDropdown.Item>
+                </NavDropdown> : null}
+                
+                {localStorage.getItem('username') && localStorage.getItem('type') === 'staff' ?
+                <NavDropdown title={<img className="img-right" src={user} alt="user"/>} id="navbarScrollingDropdown">
+                    <NavDropdown.Item href="/staff/order-list">Order Management</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/user/logout">Logout</NavDropdown.Item>
                 </NavDropdown> : null}

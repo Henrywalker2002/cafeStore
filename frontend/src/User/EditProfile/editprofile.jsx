@@ -10,47 +10,30 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { Navigate } from "react-router-dom";
+import { format, parse, parseISO } from 'date-fns';
+
 
 function EditProfile(props) {
     const [userInfo, setUserInfo] = useState({});
     const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [birthday, setBirthday] = useState();
+    const [birthday, setBirthday] = useState("");
     const [address, setAddress] = useState("");
     const [errorMessages, setErrorMessages] = useState("");
     const [renderErrorMessage, setRenderErrorMessage] = useState(<div></div>);
     const [openConfirm, setOpenConfirm] = useState(false);
     const [changepage, setChangepage] = useState(false)
     
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(localStorage.getItem('username'));
 
-    useEffect(() => {
-        const user = localStorage.getItem('username');
-        if (user) {
-            setUsername(user);
-        }
-
-        async function getUser() {
-            var url = "http://103.77.173.109:9000/index.php/account?username=" + String(user)
-    
-            var requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-            };
-            
-            const res = await fetch(url, requestOptions);
-            const response = await res.json()
-
-            setUserInfo(response.message)
-            setEmail(response.message.email)
-            setFullname(response.message.name)
-            setBirthday(response.message.birthday)
-            setPhone(response.message.phone)
-            setAddress(response.message.address)
-        }
-        getUser()
-    }, []);
+    // useEffect(() => {
+    //     const user = localStorage.getItem('username');
+    //     if (user) {
+    //         setItems(user);
+    //         // console.log(user)
+    //     }
+    // }, []);
 
     // User Login info
     const handleChangeFull = event => {
@@ -66,7 +49,8 @@ function EditProfile(props) {
     }
 
     const handleChangeBirthday = event => {
-        setBirthday(event.target.value);
+        // console.log(format(parseISO(event.target.value), 'yyyy/MM/dd'))
+        setBirthday(format(parseISO(event.target.value), 'yyyy/MM/dd'));
     }
 
     const handleChangeAddress = event => {
@@ -89,9 +73,7 @@ function EditProfile(props) {
             "username": username,
             "email" : email,
             "birthday" : birthday,
-            "name" : fullname,
-            "phone" : phone,
-            "address" : address,
+            "name" : fullname
         });
 
         var requestOptions = {
@@ -101,14 +83,15 @@ function EditProfile(props) {
             redirect: 'follow'
         };
 
+        // console.log(requestOptions)
         console.log(raw)
 
         const res = await fetch("http://103.77.173.109:9000/index.php/account", requestOptions);
         const json = await res.json()
-        console.log(json)
+
         if (json.result === "success") {
             setErrorMessages("success!!")
-            setChangepage(true)
+            // setChangepage(true)
         }
         else {
             setErrorMessages(json.message)
@@ -125,7 +108,28 @@ function EditProfile(props) {
         }
     } , [errorMessages, setRenderErrorMessage])
 
+    useEffect(() => {
+        async function getUser() {
+            var url = "http://103.77.173.109:9000/index.php/account?username=" + String(username)
     
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+            
+            const res = await fetch(url, requestOptions);
+            const response = await res.json()
+
+            setUserInfo(response.message)
+
+            setFullname(response.message.name)
+            setEmail(response.message.email)
+            setPhone(response.message.phone)
+            var birthday = parse(response.message.birthday, 'yyyy-MM-dd', new Date())
+            setBirthday(format(birthday, 'yyyy/MM/dd'))        
+        }
+        getUser()
+    } , [])
 
     return (
         <div>
@@ -141,7 +145,7 @@ function EditProfile(props) {
                                     <input type="text" id="fname" name="fname" value={username} disabled/>
                                 </td>
                                 <td>
-                                    <label>Last name</label><br/>
+                                    <label>Name</label><br/>
                                     <input type="text" id="fullname" name="fullname" defaultValue={userInfo.name} required onChange={handleChangeFull}/>
                                 </td>
                             </tr>
@@ -152,17 +156,13 @@ function EditProfile(props) {
                                 </td>
                                 <td>
                                     <label>Phone number</label><br/>
-                                    <input type="text" id="phone" name="phone" defaultValue={userInfo.phone} required placeholder="0123456789" onChange={handleChangePhone}/>
+                                    <input type="text" id="phone" name="phone" defaultValue={userInfo.phone} required placeholder="0123456789" onChange={handleChangePhone} disabled />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label>Birthday</label><br/>
                                     <input type="date" id="birthday" name="birthday" defaultValue={userInfo.birthday} required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
-                                </td>
-                                <td>
-                                    <label>Address</label><br/>
-                                    <input type="text" id="address" name="address" defaultValue={userInfo.address} required onChange={handleChangeAddress}/>
                                 </td>
                             </tr>
                         </tbody>
@@ -191,9 +191,9 @@ function EditProfile(props) {
                 </form>
                 <button className='editprofile-button' onClick={showdialog}>Change</button>
             </div>
-            <Dialog  open={changepage}>
-                <Navigate to='/user/product'/>
-            </Dialog>
+            {/* <Dialog  open={changepage}>
+                <Navigate to='/user/edit'/>
+            </Dialog> */}
         </div>
     );
 }

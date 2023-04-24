@@ -4,9 +4,14 @@ import { useEffect, useState } from "react"
 
 function MyFeedback(props) {
     const id = props.id
-    const [star, setStar] = useState(0);
-    const [comment, setComment] = useState("");
+    const [star, setStar] = useState(props.star);
+    const [comment, setComment] = useState(props.feedback);
     const [hidden, setHidden] = useState(true);
+    const [rated, setRated] = useState(true)
+
+    useEffect(() => {
+        console.log(star != undefined)
+    }, [])
 
     const handleChangeStar = event => {
         setStar(event.target.value);
@@ -39,29 +44,37 @@ function MyFeedback(props) {
     };
 
     useEffect(() => {
+        console.log(star)
         async function checkstate() {
-            if (props.status === "completed") {
-                setHidden(false)
+            if (props.status === "completed" || star != undefined) {
+                setHidden(true)
+                setRated(false)
             }
         }
         checkstate()
-    } , [props.status])
+    } , [])
 
     return (
-        <form onSubmit={handleSubmitFeedback} id="myfeedback" className="my-feedback" hidden={hidden}>
-            <label className='h4'>MY FEEDBACK:</label>
-            <img src={Star} alt="star rate"/>
-            <select name="rate" id="rate" defaultValue={props.star} onChange={handleChangeStar}>
-                <option value="0">Not rate</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <textarea id='feedback_text' placeholder='Fill your feedback in here' onChange={handleChangeComment}></textarea>
-            <input type="submit" value='Send'/>
-        </form>
+        <div>
+            <form onSubmit={handleSubmitFeedback} id="myfeedback" className="my-feedback" hidden={hidden}>
+                <label className='h4'>MY FEEDBACK:</label>
+                <img src={Star} alt="star rate"/>
+                <select name="rate" id="rate" defaultValue={props.star} onChange={handleChangeStar}>
+                    <option value="0">Not rate</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <textarea id='feedback_text' placeholder='Fill your feedback in here' onChange={handleChangeComment}></textarea>
+                <input type="submit" value='Send'/>
+            </form>
+            <div id = "rated" hidden = {rated}>
+                <p>Your star : {star}</p>
+            </div>
+        </div>
+
     );
 }
 

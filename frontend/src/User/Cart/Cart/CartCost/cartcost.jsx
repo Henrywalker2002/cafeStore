@@ -1,5 +1,5 @@
 import "./cartcost.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Dialog from '@mui/material/Dialog';
 import Alert from '@mui/material/Alert';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,19 +9,24 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { Navigate } from "react-router-dom";
 import { format } from 'react-string-format';
+import { tickFormat } from "d3-scale";
 
 function CartCost(props) {
     const [code, setCode] = useState("");
     const [percent, setPercent] = useState(0);
     const [address, setAddress] = useState("");
     const [point, setPoint] = useState(false);
-    const [shipping, setShippng] = useState(0);
-    const [total, setTotal] = useState(0);
+    const [shipping, setShippng] = useState(10000);
+    const [total, setTotal] = useState(props.total);
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
     const [openConfirm, setOpenConfirm] = useState(false);
     const [changepage, setChangepage] = useState(false)
     const [orderId, setOrderId] = useState(0)
+
+    useEffect(() => {
+        setTotal(props.total)
+    }, [props.subtotal])
 
     const handleClose = () => {
         setOpen(false);
@@ -33,6 +38,12 @@ function CartCost(props) {
     }
 
     function handleChangePoint(e) {
+        if (e.target.checked) {
+            setTotal(total - localStorage.getItem('point'))
+        }
+        else {
+            setTotal(total + parseInt(localStorage.getItem('point')))
+        }
         setPoint(e.target.checked);
     }
 
@@ -64,6 +75,8 @@ function CartCost(props) {
             else {
                 setMessage("This code sale " + String(json.message.percent) + "%")
                 setPercent(parseInt(json.message.percent))
+                var subtotal = props.subtotal - props.subtotal * percent / 100;
+                setTotal(subtotal + 10000)
             }
         }
         else {

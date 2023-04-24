@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Header from "../../Components/Header/Header";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from 'react-router-dom';
+import {parse, format} from 'date-fns'
 
 
 function Signup(props) {
@@ -23,7 +24,6 @@ function Signup(props) {
     const [errorMessages, setErrorMessages] = useState("");
     const [renderErrorMessage, setRenderErrorMessage] = useState(<div></div>);
 
-    
     // User Login info
     const handleChangeUser = event => {
         setUsername(event.target.value);
@@ -42,6 +42,8 @@ function Signup(props) {
     }
 
     const handleChangeBirthday = event => {
+        var date = parse(event.target.value, 'yyyy-MM-dd', new Date())
+        console.log(format(date, 'yyyy/MM/dd'))
         setBirthday(event.target.value);
     }
 
@@ -137,7 +139,7 @@ function Signup(props) {
                             <tr>
                                 <td>
                                     <label>Birthday</label><br/>
-                                    <input type="date" id="birthday" name="birthday" required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
+                                    <input type="date" id="birthdat" name="birthday" required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
                                 </td>
                                 <td>
                                     <label>Address</label><br/>

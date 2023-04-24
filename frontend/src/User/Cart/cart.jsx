@@ -77,7 +77,7 @@ function Cart(props) {
                     </tbody>
                 </table>
                 </div>
-                <CartCost subtotal={subtotal} username={username} listdrink={listDrink}/>
+                <CartCost subtotal={subtotal} username={username} listdrink={listDrink} total = {subtotal + 10000}/>
             </div>
             <div className="view-order">
                 <a href="/user/purchase">Go to your purchase</a>

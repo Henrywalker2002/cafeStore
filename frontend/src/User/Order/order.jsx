@@ -75,7 +75,7 @@ function Order(props) {
             <div className="order-content">
                 <div className="order-detailtable">
                     <h2>Order Details</h2>
-                    <DetailTable username={element.username} email={userInfo.email} phone={userInfo.phone} date={element.timeStart} address={element.address} status={element.statement}/>
+                    <DetailTable username={element.username} email={userInfo.email} phone={userInfo.phone} date={element.timeStart} address={element.address} status={element.statement} star = {element.star} feedback = {element.feedback}/>
                 </div>
                 <div className="order-summary">
                     <h2>Order Summary</h2>

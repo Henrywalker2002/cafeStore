@@ -11,8 +11,10 @@ function DetailTable(props) {
                 <DetailTableRow user="ORDER DATE" value={props.date}/>
                 <DetailTableRow user="DELIVERY ADDRESS" value={props.address}/>
                 <DetailTableRow user="STATUS" value={props.status}/>
+                {props.star ? <DetailTableRow user="STAR" value={props.star}/> : null}
+                {props.feedback ? <DetailTableRow user="FEEDBACK" value={props.feedback}/> : null}
             </tbody>
-        </table>
+        </table>    
     );
 }
 

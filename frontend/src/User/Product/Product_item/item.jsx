@@ -5,8 +5,10 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import { useNavigate } from "react-router-dom";
 
 function ProductItem(props) {
+    const navigate = useNavigate()
     const [openError, setOpenError] = useState(false);
     const [openSuccess, setOpenSuccess] = useState(false);
     const [message, setMessage] = useState("");
@@ -18,6 +20,10 @@ function ProductItem(props) {
     };
 
     async function addCart() {
+        if (localStorage.getItem('username') === undefined) {
+            navigate('/client/login')
+        }
+
         var body = JSON.stringify({
             "username": username,
             "drinkId": props.id

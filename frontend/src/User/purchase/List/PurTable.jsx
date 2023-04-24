@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Table.css";
 import PurRow from "./PurRow";
-import { useCookies } from "react-cookie";
 
 function PurTable({ state }) {
-  const [cookies, setCookie, removeCookie] = useCookies(['username', 'type']);
   const [orderList, setOrderList] = useState([]);
   // username
   const [username, setUsername] = useState(localStorage.getItem('username'));
