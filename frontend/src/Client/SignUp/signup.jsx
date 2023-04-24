@@ -137,7 +137,7 @@ function Signup(props) {
                             <tr>
                                 <td>
                                     <label>Birthday</label><br/>
-                                    <input type="text" id="birthdat" name="birthday" required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
+                                    <input type="date" id="birthday" name="birthday" required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
                                 </td>
                                 <td>
                                     <label>Address</label><br/>
