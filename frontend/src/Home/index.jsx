@@ -7,7 +7,11 @@ import coffee from './coffee.png'
 import choseCoffee from './chose_coffee.png'
 import truck from './truck.png'
 import taste from './taste.png'
+import coffee1 from './coffee1.png'
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { BiPhoneCall } from "react-icons/bi";
+import { BsFillHouseFill } from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
 
 function Home(props) {
     const [infor, setInfor] = useState({});
@@ -61,7 +65,28 @@ function Home(props) {
                 </div>
             </div>
             <div className='footer-content'>
-
+                <div className='left-content-footer'>
+                    <img src={coffee1} alt="coffee"></img>
+                </div>
+                <div className='right-content-footer'>
+                    <h2>About us</h2><br/>
+                    <h4>We provide quality coffee, and ready to deliver.</h4><br/>
+                    <p>We are a company that makes and distributes delicious drinks.
+                    our main product is made with a secret recipe and available in stores worldwide.</p><br/>
+                    <h2>Contact</h2>
+                    <ul className='contact-info'>
+                        <li>
+                            <BiPhoneCall className='clock-icon'/> {infor.phone}
+                        </li>
+                        <li>
+                            <BsFillHouseFill className='clock-icon'/> {infor.address}
+                        </li>
+                        <li>
+                            <AiOutlineMail className='clock-icon'/> {infor.email}
+                        </li>
+                    </ul>
+                    
+                </div>
             </div>
         </div>
     );
