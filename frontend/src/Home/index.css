@@ -1,7 +1,83 @@
 .head-content {
     text-align: center;
+    background-attachment: fixed;
+    height: 400px;
 }
 
 .homepage {
     height: 500px;
+    
+}
+
+.left-content-header {
+    padding-top: 50px;
+    text-align: left;
+    width: 50%;
+    float: left;
+}
+
+.left-content-header .coffee-span {
+    color: orange;
+}
+
+.left-content-header .time-open {
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+.clock-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.right-content-header {
+    background: url(./bg_img_hero.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    padding-top: 50px;
+    text-align: left;
+    width: 40%;
+    float: right;
+}
+
+.right-content-header img {
+    background: url(./brown1_bg.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 320px;
+}
+
+.head-content h1 {
+    font-weight: 600;
+    font-size: 50px;
+    color: #2F2105;
+}
+
+.head-content a {
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #2F2105;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.instruc-delivey h2{
+    font-weight: 600;
+    height: max-content;
+}
+
+.icon-delivery {
+    text-align: center;
+    float: left;
+    width: 30%;
+}
+
+.icon-delivery h4 {
+    color: #2F2105;
+    font-weight: 600;
 }

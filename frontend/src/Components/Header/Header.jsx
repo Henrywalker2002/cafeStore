@@ -27,7 +27,7 @@ function Header(props) {
                     {!localStorage.getItem('username') ? < Nav.Link href="/client/signup" className="right"> Sign Up </Nav.Link> : null}
                 </Nav>
 
-                {localStorage.getItem('username') && localStorage.getItem('type') == 'user' ?
+                {localStorage.getItem('username') && localStorage.getItem('type') === 'user' ?
                 <NavDropdown title={<img className="img-right" src={user} alt="user"/>} id="navbarScrollingDropdown">
                     <NavDropdown.Item href="/user/edit">Edit profile</NavDropdown.Item>
                     <NavDropdown.Item href="/user/purchase">My purchase</NavDropdown.Item>
@@ -35,7 +35,7 @@ function Header(props) {
                     <NavDropdown.Item href="/user/logout">Logout</NavDropdown.Item>
                 </NavDropdown> : null}
 
-                {localStorage.getItem('username') && localStorage.getItem('type') == 'admin' ?
+                {localStorage.getItem('username') && localStorage.getItem('type') === 'admin' ?
                 <NavDropdown title={<img className="img-right" src={user} alt="user"/>} id="navbarScrollingDropdown">
                     <NavDropdown.Item href="/admin/acc-list">Account Management</NavDropdown.Item>
                     <NavDropdown.Item href="/admin/menu">Menu Management</NavDropdown.Item>
@@ -43,7 +43,7 @@ function Header(props) {
                     <NavDropdown.Item href="/user/logout">Logout</NavDropdown.Item>
                 </NavDropdown> : null}
 
-                {localStorage.getItem('username') && localStorage.getItem('type') == 'user' ? 
+                {localStorage.getItem('username') && localStorage.getItem('type') === 'user' ? 
                 <Navbar.Brand href="/user/cart">
                     <img className="img-right" src={cart} alt="cart"/>
                 </Navbar.Brand> : null
