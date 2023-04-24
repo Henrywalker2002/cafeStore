@@ -145,7 +145,7 @@ function EditProfile(props) {
                             <tr>
                                 <td>
                                     <label>Email</label><br/>
-                                    <input type="text" id="email" name="email" defaultValue={userInfo.email} required placeholder="abc@gmail.com" onChange={handleChangeEmail}/>
+                                    <input type="email" id="email" name="email" defaultValue={userInfo.email} required placeholder="abc@gmail.com" onChange={handleChangeEmail}/>
                                 </td>
                                 <td>
                                     <label>Phone number</label><br/>
@@ -155,7 +155,7 @@ function EditProfile(props) {
                             <tr>
                                 <td>
                                     <label>Birthday</label><br/>
-                                    <input type="text" id="birthday" name="birthday" defaultValue={userInfo.birthday} required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
+                                    <input type="date" id="birthday" name="birthday" defaultValue={userInfo.birthday} required placeholder="2000/01/01" onChange={handleChangeBirthday}/>
                                 </td>
                                 <td>
                                     <label>Address</label><br/>

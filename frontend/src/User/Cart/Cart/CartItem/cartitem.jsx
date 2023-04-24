@@ -32,12 +32,7 @@ function CartItem(props) {
     } , [props.image, props.name, props.price])
 
     function handleChange(e) {
-        if (e.target.value > quantity) {
-            props.callback(props.subtotal + price)
-        }
-        else {
-            props.callback(props.subtotal - price)
-        }
+        props.callback(props.subtotal - price*quantity + price*e.target.value)
         setQuantity(e.target.value);
         var lst = props.listdrink
         for(var key in lst) {

@@ -6,6 +6,7 @@
     margin-top: 60px;
     border-radius: 24px;
     padding: 30px;
+    font-family: 'Times New Roman', Times, serif;
 
     background-color: #FFD28F;
     text-align: center;
@@ -13,7 +14,7 @@
 
 .login h2 {
     font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .username {
@@ -28,14 +29,14 @@
     background-color: #90500E;
     border-radius: 24px;
     font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     margin-bottom: 10px;
 }
 
 .new-member {
     color: black;
     text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .errormessage {

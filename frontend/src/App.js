@@ -6,7 +6,7 @@ import Menu_management from './Admin/Menu_management/Menu_management';
 import Account_list from './Admin/Account_list/Account_list';
 import Edit_staff from './Admin/Account_list/Edit_staff';
 import Add_staff from './Admin/Account_list/Add_staff';
-import Purchase from './User/Purchase/Purchase';
+import Purchase from './User/purchase/purchase';
 
 import Login from './Client/Login/login';
 import Signup from './Client/SignUp/signup';

@@ -84,7 +84,7 @@ function Login(props) {
                 <img src={logo} alt="logo"></img>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="username" className='username' required placeholder="Username" onChange={handleChangeUser}></input>
-                    <input type="text" name="password" className='username' required placeholder="Password" onChange={handleChangePass}></input>
+                    <input type="password" name="password" className='username' required placeholder="Password" onChange={handleChangePass}></input>
                     <button type="submit" className="username button-container">Log In</button>
                     {renderErrorMessage}
                 </form>
