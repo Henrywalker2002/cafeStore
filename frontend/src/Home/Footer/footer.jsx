@@ -220,7 +220,7 @@ export default function Cusfooter(props) {
         </div>
         © 2023 Copyright:
         <a className="text-reset fw-bold" href="/">
-          cafestreet.henrywalker.online
+          cafestore.henrywalker.online
         </a>
       </div>
     </MDBFooter>
