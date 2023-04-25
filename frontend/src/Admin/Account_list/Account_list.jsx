@@ -1,8 +1,5 @@
 import React, { useState, useEffect, createElement } from "react";
 import { useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -24,11 +21,6 @@ function Account_list() {
   // handle delete Dialog
   const [openDel, setOpenDel] = useState(false);
   const [messageDelete, setMessageDelete] = useState("");
-  // handle show create-account button
-  const [showBtn, setShowBtn] = useState(false);
-  const handleShowBtn = (state) => {
-    setShowBtn(state);
-  };
 
   // Fetch API
   async function getData() {
@@ -158,37 +150,15 @@ function Account_list() {
         <button className="search-btn">
           <FiSearch />
         </button>
-        {showBtn && (
-          <button
-            className="addItem-btn"
-            onClick={() => {
-              navigate("/admin/acc-list/addStaff");
-            }}
-          >
-            + Create Account
-          </button>
-        )}
+        <button
+          className="addItem-btn"
+          onClick={() => {
+            navigate("/admin/acc-list/addStaff");
+          }}
+        >
+          + Create Account
+        </button>
       </div>
-      <Navbar className="type-nav" bg="#F6EBDA">
-        <Container className="type-nav-container">
-          <Nav className="type-list">
-            <Nav.Link
-              className="type"
-              href="#staff"
-              onClick={() => handleShowBtn(true)}
-            >
-              Staff
-            </Nav.Link>
-            <Nav.Link
-              className="type"
-              href="#user"
-              onClick={() => handleShowBtn(false)}
-            >
-              User
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
       <table class="account-table">
         <thead className="account-list-thead">
           <th className="account-list-th">USERNAME</th>
@@ -207,7 +177,7 @@ function Account_list() {
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
-          Subscribe
+          Delete Account
         </DialogTitle>
         <DialogContent>
           <DialogContentText>

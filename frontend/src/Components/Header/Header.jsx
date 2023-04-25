@@ -65,6 +65,7 @@ function Header(props) {
             <NavDropdown.Item href="/admin/menu">
               Menu Management
             </NavDropdown.Item>
+            <NavDropdown.Item href="/admin/report">Report</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/user/logout">Logout</NavDropdown.Item>
           </NavDropdown>
