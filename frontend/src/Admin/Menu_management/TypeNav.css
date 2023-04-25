@@ -1,0 +1,41 @@
+.type-nav .container{
+    /* border-bottom: 3px solid #D8D8D8; */
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.type-list .type{
+    color: #707070;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+
+    padding-left: 0;
+    padding-right: 20px;
+    margin-left: 0;
+    margin-right: 20px;
+    padding-bottom: 20px;
+
+    transition: all 0.2s;
+}
+
+.type-list .type:hover{
+    border-bottom: 2px solid #E37D20;
+    color: #E37D20;
+    opacity: 1;
+}
+a.type.nav-link.active{
+    border-bottom: 3px solid #E37D20;
+    color: #E37D20;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+

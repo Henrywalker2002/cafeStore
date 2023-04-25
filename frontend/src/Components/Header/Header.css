@@ -1,0 +1,48 @@
+.head {
+  width: 1206px;
+  height: 40px;
+  margin-top: 36px;
+  margin-left: 135px;
+  margin-right: 99px;
+  border: 0px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.img-left {
+  float: left;
+  margin-top: 5px;
+  margin-left: 4px;
+}
+
+.head-middle {
+  float: left;
+  width: 670px;
+  height: 40px;
+  margin-left: 90px;
+  padding-top: 6px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.right {
+  float: right;
+}
+
+span.page {
+  margin-left: 32px;
+}
+
+.img-right {
+  float: right;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.search-box {
+  font-size: 15px;
+  height: 25px;
+  padding-left: 10px;
+  margin-right: 20px;
+  border-radius: 15px;
+  border: 0px;
+}

@@ -1,0 +1,22 @@
+.footer-info {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-info h5 {
+  color: #2f2105;
+  font-family: var(--font-global);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.footer-contact {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
